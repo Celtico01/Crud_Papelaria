@@ -27,6 +27,7 @@
 
 ## Objetivo:
 ###  Criar um C.R.U.D. para uma papelaria.
+###  Data de entrega: 18/12/2023
 
 ## Status:
 
