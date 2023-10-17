@@ -25,6 +25,9 @@
  
 ### Somente UM membro da equipe deverá ENVIAR (fazer o upload) das questões do trabalho através desse formulário para evitar ARQUIVOS DUPLICADOS.
 
+## Objetivo:
+###  Criar um C.R.U.D. para uma papelaria.
+
 ## Status:
 
 ## Versão:
