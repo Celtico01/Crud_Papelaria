@@ -29,6 +29,8 @@
 ###  Criar um C.R.U.D. para uma papelaria.
 ###  Data de entrega: 18/12/2023
 
-## Status:
+## Status: 
+### Modelando banco de dados
 
-## Versão:
+## Versão: 
+### 0.0
