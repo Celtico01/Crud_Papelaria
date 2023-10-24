@@ -1,18 +1,18 @@
 #!/bin/bash
 
 # Solicita ao usuário que insira o nome de usuário
-read -p "Nome de Usuário do Banco de Dados: " DB_USER
+read -p "Nome de Usuário do Banco de Dados: " DB_USUARIO
 
 # Solicita ao usuário que insira a senha (a senha será mascarada)
-read -s -p "Senha do Banco de Dados: " DB_PASSWORD
+read -s -p "Senha do Banco de Dados: " DB_SENHA
 
 echo  # Adiciona uma quebra de linha após a entrada da senha
 
-DB_NAME="PAPELARIA"
+DB_NOME="PAPELARIA"
 
 SQL_SCRIPT=$(cat <<EOF
-CREATE DATABASE IF NOT EXISTS $DB_NAME;
-USE $DB_NAME;
+CREATE DATABASE IF NOT EXISTS $DB_NOME;
+USE $DB_NOME;
 
 CREATE TABLE IF NOT EXISTS tbProduto (
   PRO_CODIGO INT NOT NULL AUTO_INCREMENT,
@@ -41,12 +41,12 @@ EOF
 )
 
 # Executa o script SQL no banco de dados
-mysql -u $DB_USER -p$DB_PASSWORD -e "$SQL_SCRIPT"
+mysql -u $DB_USUARIO -p$DB_SENHA -e "$SQL_SCRIPT"
 
 # Verifica o status da execução
 if [ $? -eq 0 ]; then
-  echo "Banco de dados e tabelas criados com sucesso em $DB_NAME."
+  echo "Banco de dados e tabelas criados com sucesso em $DB_NOME."
 else
-  echo "Erro ao criar o banco de dados e tabelas em $DB_NAME."
+  echo "Erro ao criar o banco de dados e tabelas em $DB_NOME."
 fi
 

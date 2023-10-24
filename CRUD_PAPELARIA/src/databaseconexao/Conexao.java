@@ -3,6 +3,9 @@ package databaseconexao;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 public class Conexao {
@@ -10,14 +13,8 @@ public class Conexao {
     private String senha;
     private final String url;
     private final String className;
-
-    public Conexao() { 
-        this.url = "jdbc:mysql://localhost:3306/PAPELARIA?useTimezone=true&serverTimezone=UTC";
-        this.className = "com.mysql.cj.jdbc.Driver";
-        this.usuario = "root";
-        this.senha = "kissmygrits12345";
         
-    }
+
     public Conexao(String usuario, String senha){
         this.url = "jdbc:mysql://localhost:3306/PAPELARIA?useTimezone=true&serverTimezone=UTC";
         this.className = "com.mysql.cj.jdbc.Driver";
@@ -25,7 +22,7 @@ public class Conexao {
         this.senha = senha;
     }
             
-    public Connection estabelecerConexao(){
+    public final Connection estabelecerConexao(){
         try{
             Class.forName(className);
             return DriverManager.getConnection(this.url, usuario, senha);
@@ -33,10 +30,43 @@ public class Conexao {
         catch(ClassNotFoundException cnfe){
             JOptionPane.showMessageDialog(null, "ERRO: classe não encontrada!", "ERRO", JOptionPane.ERROR_MESSAGE);
         }
-        catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "ERRO: " + ex.getMessage(), "ERRO", JOptionPane.ERROR_MESSAGE);
+        catch (SQLException sqle) {
+            JOptionPane.showMessageDialog(null, "ERRO: " + sqle.getMessage(), "ERRO", JOptionPane.ERROR_MESSAGE);
         }
         return null; 
+    }
+    
+    public final boolean finalizarConexao(Connection cnct){
+        boolean ret = false;
+        try{
+            if(cnct != null){
+                cnct.close();
+                ret = true;
+            }
+            else{
+                ret = false;
+            }
+            
+        }
+        catch(SQLException sqle){
+            JOptionPane.showMessageDialog(null, "ERRO: " + sqle.getMessage(), "ERRO", JOptionPane.ERROR_MESSAGE);
+        }
+        return ret;
+    }
+    
+    public final Statement criarStatement(Connection cnct){
+        try {
+            if(cnct != null){
+                return cnct.createStatement();
+            }
+            else{
+                throw new NullPointerException("Conexão inválida!");
+            }
+        } 
+        catch (SQLException | NullPointerException erro) {
+            JOptionPane.showMessageDialog(null, "ERRO: " + erro.getMessage(), "ERRO", JOptionPane.ERROR_MESSAGE);
+        }
+        return null;
     }
 }
 
