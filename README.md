@@ -12,6 +12,3 @@
 
 ## Status: 
 ### Banco de Dados Finalizado e Criação da classe conexão de criação em progresso!
-
-## Versão: 
-### 0.01
