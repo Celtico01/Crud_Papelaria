@@ -4,13 +4,11 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 public class Conexao {
-    private  String usuario;
-    private String senha;
+    private final  String usuario;
+    private final String senha;
     private final String url;
     private final String className;
         

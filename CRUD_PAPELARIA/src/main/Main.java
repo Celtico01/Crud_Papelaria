@@ -7,7 +7,7 @@ import java.sql.SQLException;
 
 public class Main {
     public static void main(String[] args) throws SQLException{
-        Conexao conec = new Conexao("root", "aluno123");
+        Conexao conec = new Conexao("root", "kissmygrits1234");
         Connection cnct = conec.estabelecerConexao();
         
         ResultSet result = conec.criarStatement(cnct).executeQuery("SELECT * FROM tbProduto");
@@ -30,3 +30,16 @@ public class Main {
         conec.finalizarConexao(cnct);
     }
 }
+
+/*String sql = "INSERT INTO usuario(nome,cpf,email,telefone) VALUES(?,?,?,?)";  
+
+        try {  
+            PreparedStatement stmt = connection.prepareStatement(sql);  
+
+            stmt.setString(1, usuario.getNome());  
+            stmt.setString(2, usuario.getCpf());  
+            stmt.setString(3, usuario.getEmail());  
+            stmt.setString(4, usuario.getTelefone());  
+
+             stmt.execute();  
+            stmt.close(); */
