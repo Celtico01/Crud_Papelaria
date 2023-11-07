@@ -1,14 +1,17 @@
 package main;
 
 import databaseconexao.Conexao;
-import janelas.JFrameConexaoInicial;
+import janelas.loginbd.JFrameAjuda;
+import janelas.loginbd.JFrameConexaoInicial;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.awt.Dialog;
 
 
 public class Main {
-    public static void main(String[] args) throws SQLException{
+    public static void main(String[] args) throws SQLException, InterruptedException{
+        String[] dados = null;
 //        Conexao conec = new Conexao("root", "kissmygrits1234");
 //        Connection cnct = conec.estabelecerConexao();
 //        
@@ -30,6 +33,16 @@ public class Main {
 //        }
 //        
 //        conec.finalizarConexao(cnct);
+
+        JFrameConexaoInicial jfci = new JFrameConexaoInicial();
+        
+        jfci.wait();
+        
+        jfci.setVisible(true);
+        
+        dados = jfci.getDados();
+        
+        System.out.println(dados[0] + " " + dados[1]);
     }
 }
 
