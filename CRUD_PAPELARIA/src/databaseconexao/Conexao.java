@@ -7,7 +7,7 @@ import java.sql.Statement;
 import javax.swing.JOptionPane;
 
 public class Conexao {
-    private final  String usuario;
+    private final String usuario;
     private final String senha;
     private final String url;
     private final String className;
