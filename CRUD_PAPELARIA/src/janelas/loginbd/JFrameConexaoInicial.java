@@ -5,19 +5,23 @@
  */
 package janelas.loginbd;
 
+import java.sql.Connection;
+import databaseconexao.Conexao;
 
 /**
  *
  * @author Aluno
  */
 public class JFrameConexaoInicial extends javax.swing.JFrame {
-    public String[] getDados(){
-        String[] rtn = new String[2];
-        rtn[0] = txtFUsuario.getText();
-        rtn[1] = String.valueOf(txtPassword.getPassword());
-        return rtn;
+    public Connection criarConnection(){
+        Conexao conec = criarConexao();
+        return conec.estabelecerConexao();
     }
-
+    
+    private Conexao criarConexao(){
+        return new Conexao(txtFUsuario.getText(), String.valueOf(txtPassword.getPassword()));
+    }
+    
     /**
      * Creates new form JFrameConexaoInicial
      */
@@ -165,8 +169,13 @@ public class JFrameConexaoInicial extends javax.swing.JFrame {
     }//GEN-LAST:event_btnAjudaActionPerformed
 
     private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
-        txtPassword.setText(String.valueOf(txtPassword.getPassword()));
-        dispose();
+        if(criarConexao().verificarDados() == true){
+            dispose();
+        }
+        else{
+            //criar janela de erro!
+        }
+        
     }//GEN-LAST:event_btnLoginActionPerformed
     
     
