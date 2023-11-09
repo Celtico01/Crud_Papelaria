@@ -7,7 +7,7 @@ import java.sql.Statement;
 import javax.swing.JOptionPane;
 
 public class Conexao {
-    private final  String usuario;
+    private final String usuario;
     private final String senha;
     private final String url;
     private final String className;
@@ -30,7 +30,7 @@ public class Conexao {
         }
         catch (SQLException sqle) {
             JOptionPane.showMessageDialog(null, "ERRO: " + sqle.getMessage(), "ERRO", JOptionPane.ERROR_MESSAGE);
-        }
+        }   
         return null; 
     }
     
@@ -65,6 +65,22 @@ public class Conexao {
             JOptionPane.showMessageDialog(null, "ERRO: " + erro.getMessage(), "ERRO", JOptionPane.ERROR_MESSAGE);
         }
         return null;
+    }
+    
+    public final boolean verificarDados(){
+        Connection conect = null;
+        try{
+            Class.forName(className);
+            conect = DriverManager.getConnection(this.url, usuario, senha);
+            conect.close();
+        }
+        catch(ClassNotFoundException cnfe){
+            JOptionPane.showMessageDialog(null, "ERRO: classe não encontrada!", "ERRO", JOptionPane.ERROR_MESSAGE);
+        }
+        catch (SQLException sqle) {
+            return false;
+        }
+        return true;
     }
 }
 

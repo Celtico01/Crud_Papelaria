@@ -1,16 +1,26 @@
 package main;
 
 import databaseconexao.Conexao;
+import janelas.loginbd.JFrameAjuda;
+import janelas.loginbd.JFrameConexaoInicial;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.awt.Dialog;
+
 
 public class Main {
-    public static void main(String[] args) throws SQLException{
-        Conexao conec = new Conexao("root", "kissmygrits1234");
-        Connection cnct = conec.estabelecerConexao();
+    public static void main(String[] args) throws SQLException, InterruptedException{
+        JFrameConexaoInicial jfci = new JFrameConexaoInicial();
+        jfci.setVisible(true);
         
-        ResultSet result = conec.criarStatement(cnct).executeQuery("SELECT * FROM tbProduto");
+        while(jfci.isActive()){
+            jfci.wait();
+        }
+        
+        Connection cnct = jfci.criarConnection();
+        
+        ResultSet result = cnct.createStatement().executeQuery("SELECT * FROM tbProduto");
         
         while(result.next()){
             int codigo = result.getInt("PRO_CODIGO");
@@ -27,7 +37,8 @@ public class Main {
                 System.out.println();
         }
         
-        conec.finalizarConexao(cnct);
+        
+       
     }
 }
 

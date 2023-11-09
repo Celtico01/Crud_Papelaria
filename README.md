@@ -11,7 +11,4 @@
 ###  Data de entrega: 18/12/2023
 
 ## Status: 
-### Banco de Dados Finalizado e Criação da classe conexão de criação em progresso!
-
-## Versão: 
-### 0.01
+### Imcompleto!

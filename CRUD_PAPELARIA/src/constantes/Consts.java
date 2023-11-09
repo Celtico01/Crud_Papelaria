@@ -1,4 +1,4 @@
-package Constantes;
+package constantes;
 
 public final class Consts {
     
