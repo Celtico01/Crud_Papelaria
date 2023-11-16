@@ -7,8 +7,11 @@ package janelas.loginbd;
 
 import java.sql.Connection;
 import databaseconexao.Conexao;
+import janelas.principal.JFrameHub;
 import java.awt.Dimension;
 import java.awt.Toolkit;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowListener;
 import javax.swing.JOptionPane;
 
 /**
@@ -30,16 +33,6 @@ public class JFrameConexaoInicial extends javax.swing.JFrame {
      */
     public JFrameConexaoInicial() {
         initComponents();
-        
-        Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-
-        // Calcula a posição central para a janela
-        int x = (screenSize.width - getWidth()) / 2;
-        int y = (screenSize.height - getHeight()) / 2;
-
-        // Define a posição da janela no centro
-        setLocation(x, y);
-        
     }
 
     /**
@@ -64,8 +57,10 @@ public class JFrameConexaoInicial extends javax.swing.JFrame {
         jButton3.setText("jButton3");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Login");
+        setResizable(false);
 
-        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Login BD", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 24))); // NOI18N
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Login", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 24))); // NOI18N
 
         jLabel1.setText("Usuário:");
 
@@ -84,7 +79,7 @@ public class JFrameConexaoInicial extends javax.swing.JFrame {
             }
         });
 
-        btnLogin.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/login_icon.png"))); // NOI18N
+        btnLogin.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/login/login_icon.png"))); // NOI18N
         btnLogin.setText("Login");
         btnLogin.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -92,7 +87,7 @@ public class JFrameConexaoInicial extends javax.swing.JFrame {
             }
         });
 
-        btnLimpar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/limpar_icon.png"))); // NOI18N
+        btnLimpar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/login/limpar_icon.png"))); // NOI18N
         btnLimpar.setText("Limpar");
         btnLimpar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -100,7 +95,7 @@ public class JFrameConexaoInicial extends javax.swing.JFrame {
             }
         });
 
-        btnAjuda.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/ajuda_icon.png"))); // NOI18N
+        btnAjuda.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/login/ajuda_icon.png"))); // NOI18N
         btnAjuda.setText("Ajuda");
         btnAjuda.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -174,6 +169,7 @@ public class JFrameConexaoInicial extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void txtPasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPasswordActionPerformed
@@ -193,11 +189,12 @@ public class JFrameConexaoInicial extends javax.swing.JFrame {
 
     private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
         if(criarConexao().verificarDados() == true){
-            dispose();
+            new JFrameHub().setVisible(true);
+            this.dispose();
         }
         else{
             JOptionPane.showMessageDialog(null, "Tente novamente, dados incorretos!", "ERRO", JOptionPane.ERROR_MESSAGE);
-            dispose();
+            txtPassword.setText("");
         }
         
     }//GEN-LAST:event_btnLoginActionPerformed

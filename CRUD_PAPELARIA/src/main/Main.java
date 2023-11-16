@@ -1,26 +1,16 @@
 package main;
 
-import janelas.loginbd.JFrameAjuda;
-import janelas.loginbd.JFrameConexaoInicial;
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
-import java.sql.Connection;
-import java.sql.ResultSet;
+import janelas.loginbd.*;
+import janelas.principal.*;
 import java.sql.SQLException;
 
 public class Main {
 
     public static void main(String[] args) throws SQLException, InterruptedException {
-        JFrameConexaoInicial jfci = new JFrameConexaoInicial();
-        jfci.addWindowListener(new WindowAdapter() {
-
-            @Override
-            public void windowClosed(WindowEvent e) {
-                  
-            }
-        });
-
-        jfci.setVisible(true);
+            
+        JFrameConexaoInicial janela = new JFrameConexaoInicial();
+        
+        janela.setVisible(true);
     }
 }
 
