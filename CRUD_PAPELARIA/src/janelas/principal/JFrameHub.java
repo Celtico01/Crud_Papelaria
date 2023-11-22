@@ -1,24 +1,47 @@
 package janelas.principal;
 
-import java.util.Calendar;
-
+import java.awt.event.ActionEvent;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import javax.swing.*;
 
 
 public class JFrameHub extends javax.swing.JFrame {
 
     public JFrameHub() {
         initComponents();
-       
-        Calendar c = Calendar.getInstance();
         
         txtStatus.setText("Conectado");
         
-        txtData.setText(String.valueOf(c.get(Calendar.DAY_OF_MONTH)) + "/" + String.valueOf(c.get(Calendar.MONTH)) + 
-                "/" + String.valueOf(c.get(Calendar.YEAR)));
+        //setar uma hora e data inicial.
         
-        txtHora.setText(String.format("%02d", c.get(Calendar.HOUR_OF_DAY)) + ":" + String.format ("%02d", c.get(Calendar.MINUTE))+
-                ":" + String.format("%02d", c.get(Calendar.SECOND)));
-       
+        SimpleDateFormat horarioForm = new SimpleDateFormat("HH:mm:ss");
+        String horarioAtual = horarioForm.format(new Date());
+        SimpleDateFormat dataForm = new SimpleDateFormat("dd/MM/yyyy");
+        String dataAtual = dataForm.format(new Date());
+        
+        txtData.setText(dataAtual);
+        txtHora.setText(horarioAtual);
+        
+        
+        //evento para atualizar o horario e data
+        SwingUtilities.invokeLater(() -> {
+            // cria um evento para iniciar o timer para atualizar o horário e a data a cada segundo
+            Timer timer = new Timer(1000, (ActionEvent e) -> {
+                atualizarDataHora(txtHora, txtData);
+            });
+            timer.start();
+            
+            // criar um evento para parar o timer quando a janela for fechada
+            addWindowListener(new WindowAdapter() {
+                @Override
+                public void windowClosed(WindowEvent e) {
+                    timer.stop();
+                }
+            });
+        });
     }
 
     @SuppressWarnings("unchecked")
@@ -193,7 +216,20 @@ public class JFrameHub extends javax.swing.JFrame {
         // TODO
     }//GEN-LAST:event_btnDeleteActionPerformed
 
+    private static void atualizarDataHora(JTextField txtHorario, JTextField txtData) {
+        // Obter o horário atual
+        SimpleDateFormat horarioForm = new SimpleDateFormat("HH:mm:ss");
+        String horarioAtual = horarioForm.format(new Date());
+        SimpleDateFormat dataForm = new SimpleDateFormat("dd/MM/yyyy");
+        String dataAtual = dataForm.format(new Date());
 
+        // Atualizar o rótulo na EDT
+        SwingUtilities.invokeLater(() -> {
+            txtHorario.setText(horarioAtual);
+            txtData.setText(dataAtual);
+        });
+    }
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAlterar;
     private javax.swing.JButton btnCriar;

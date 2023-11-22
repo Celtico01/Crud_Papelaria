@@ -6,7 +6,7 @@ public class JFrameAjuda extends javax.swing.JFrame {
         initComponents();
         lblUsuario.setText("<html>O usuário é o mesmo que está no MySql e geralmente é \"root\", verifique no MySql e tente novamente! </html>");
         lblSenha.setText("<html>A senha geralmente é a mesma que a incial da maquina ou é inserida durante a instalação do MySql. </html>");
-        lblSenhaLess.setText("<html>Se você não possui senha então é só inserir o usuário!</html>");
+        lblSenhaLess.setText("<html>Se você não possui senha então é só inserir o usuário e marcar a caixinha!</html>");
     }
 
     @SuppressWarnings("unchecked")
