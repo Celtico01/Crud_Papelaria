@@ -28,7 +28,7 @@ VALUES
 
 -- Inserção de dados na tabela 'tbItemPedido'
 -- Considerando que os códigos de produtos e pedidos correspondem aos inseridos anteriormente
-INSERT INTO tbItemPedido (PED_CODIGO, PRO_CODIGO, PRO_QUANTIDADE, PRO_PRECO_UNITARIO)
+INSERT INTO tbItemPedido (PED_CODIGO, PRO_CODIGO, IPE_QUANTIDADE, IPE_PRECO_UNITARIO)
 VALUES
     (1, 1, 5, 1.50), -- 5 Canetas Azuis para o Cliente A
     (2, 2, 2, 8.99), -- 2 Cadernos para o Cliente B

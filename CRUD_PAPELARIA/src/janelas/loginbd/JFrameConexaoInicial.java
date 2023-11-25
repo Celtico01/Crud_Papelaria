@@ -47,6 +47,11 @@ public class JFrameConexaoInicial extends javax.swing.JFrame {
         jLabel1.setText("Usuário:");
 
         txtFUsuario.setText("root");
+        txtFUsuario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtFUsuarioActionPerformed(evt);
+            }
+        });
 
         jLabel2.setText("Senha:");
 
@@ -165,7 +170,7 @@ public class JFrameConexaoInicial extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void txtPasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPasswordActionPerformed
-        // TODO add your handling code here:
+        btnLoginActionPerformed(evt);
     }//GEN-LAST:event_txtPasswordActionPerformed
 
     private void btnLimparActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimparActionPerformed
@@ -181,33 +186,35 @@ public class JFrameConexaoInicial extends javax.swing.JFrame {
 
     private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
         if(criarConexao().verificarDados() == true){
-            new JFrameHub().setVisible(true);
+            new JFrameHub(criarConnection()).setVisible(true);
             this.dispose();
         }
         else{
             JOptionPane.showMessageDialog(null, "Tente novamente, dados incorretos!", "ERRO", JOptionPane.ERROR_MESSAGE);
             txtPassword.setText("");
         }
-        
     }//GEN-LAST:event_btnLoginActionPerformed
 
     private void txtPasswordKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPasswordKeyPressed
-        // TODO add your handling code here:
+        //não consigo apagar!
     }//GEN-LAST:event_txtPasswordKeyPressed
 
     private void checkBLoginSemSenhaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_checkBLoginSemSenhaActionPerformed
         if(checkBLoginSemSenha.isSelected()){
             txtPassword.setEditable(false);
             txtPassword.setEnabled(false);
+            txtPassword.setText("");
         }
         else{
             txtPassword.setEditable(true);
             txtPassword.setEnabled(true);
         }
     }//GEN-LAST:event_checkBLoginSemSenhaActionPerformed
-    
-    
 
+    private void txtFUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtFUsuarioActionPerformed
+        btnLoginActionPerformed(evt);
+    }//GEN-LAST:event_txtFUsuarioActionPerformed
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAjuda;
     private javax.swing.JButton btnLimpar;
