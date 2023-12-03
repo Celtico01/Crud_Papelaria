@@ -56,18 +56,36 @@ VALUES
 
 -- Inserção de dados na tabela 'tbItemPedido'
 -- Considerando que os códigos de produtos e pedidos correspondem aos inseridos anteriormente
+
+-- Pedido 1 (Cliente A) com vários produtos
 INSERT INTO tbItemPedido (PED_CODIGO, PRO_CODIGO, IPE_QUANTIDADE, IPE_PRECO_UNITARIO)
 VALUES
     (1, 1, 5, 1.50),   -- 5 Canetas Azuis para o Cliente A
-    (2, 2, 2, 8.99),   -- 2 Cadernos para o Cliente B
-    (3, 3, 10, 0.75),  -- 10 Lápis HB para o Cliente C
-    (4, 4, 3, 0.50),   -- 3 Borrachas para o Cliente D
-    (5, 5, 1, 29.99),  -- 1 Mochila para o Cliente E
-    (6, 6, 4, 5.99),   -- 4 Conjuntos de Lápis de Cor para o Cliente F
-    (7, 7, 1, 12.99),  -- 1 Grampeador para o Cliente G
-    (8, 8, 6, 1.50),   -- 6 Canetas Azuis para o Cliente H
-    (9, 9, 8, 2.99),   -- 8 Pastas para o Cliente I
-    (10, 10, 5, 1.25); -- 5 Réguas para o Cliente J
+    (1, 2, 2, 8.99),   -- 2 Cadernos para o Cliente A
+    (1, 3, 10, 0.75);  -- 10 Lápis HB para o Cliente A
+
+-- Pedido 2 (Cliente B) com alguns produtos
+INSERT INTO tbItemPedido (PED_CODIGO, PRO_CODIGO, IPE_QUANTIDADE, IPE_PRECO_UNITARIO)
+VALUES
+    (2, 4, 3, 0.50),   -- 3 Borrachas para o Cliente B
+    (2, 5, 1, 29.99);  -- 1 Mochila para o Cliente B
+
+-- Pedido 3 (Cliente C) com um produto
+INSERT INTO tbItemPedido (PED_CODIGO, PRO_CODIGO, IPE_QUANTIDADE, IPE_PRECO_UNITARIO)
+VALUES
+    (3, 6, 4, 5.99);   -- 4 Conjuntos de Lápis de Cor para o Cliente C
+
+-- Pedido 4 (Cliente D) com mais produtos
+INSERT INTO tbItemPedido (PED_CODIGO, PRO_CODIGO, IPE_QUANTIDADE, IPE_PRECO_UNITARIO)
+VALUES
+    (4, 7, 1, 12.99),  -- 1 Grampeador para o Cliente D
+    (4, 8, 6, 1.50);   -- 6 Canetas Azuis para o Cliente D
+
+-- Pedido 5 (Cliente E) com produtos variados
+INSERT INTO tbItemPedido (PED_CODIGO, PRO_CODIGO, IPE_QUANTIDADE, IPE_PRECO_UNITARIO)
+VALUES
+    (5, 9, 8, 2.99),   -- 8 Pastas para o Cliente E
+    (5, 10, 5, 1.25);  -- 5 Réguas para o Cliente E
 EOF
 )
 
@@ -81,3 +99,4 @@ else
   echo "Erro ao inserir dados de teste."
   exit 1
 fi
+

@@ -1,34 +1,49 @@
 package constantes;
 
 public final class Consts {
-    public static final String TODOS_OS_PRODUTOS = "select * from tbProduto";
+    //outras
+    public static final int TEMA_CLARO = 1;
+    public static final int TEMA_ESCURO = 2;
+    
+    //consts produtos
     public static final String PRO_CODIGO = "PRO_CODIGO";
     public static final String PRO_NOME = "PRO_NOME";
     public static final String PRO_DESCRICAO = "PRO_DESCRICAO";
     public static final String PRO_PRECO = "PRO_PRECO";
     public static final String PRO_QUANTIDADE_ESTOQUE = "PRO_QUANTIDADE_ESTOQUE";
+    public static final String TODOS_OS_PRODUTOS = "select * from tbProduto";
+    public static final String QUANTIDADE_PRODUTOS = "select count(*) QTDE from tbProduto";
+    public static final String APAGAR_PRODUTO = "delete from tbProduto where PRO_CODIGO = ?;";
+    
+    //consts pedidos
+    public static final String PED_CODIGO = "PED_CODIGO";
+    public static final String PED_NOME_CLIENTE = "PED_NOME_CLIENTE";
+    public static final String PED_DATA_PEDIDO = "PED_DATA_PEDIDO";
+    public static final String TODOS_OS_PEDIDOS = "select * from tbPedido";
+    
+    //consts ItemPedido
+    public static final String IPE_CODIGO = "IPE_CODIGO";
+    public static final String PED_CODIGO_FK = "PED_CODIGO";
+    public static final String PRO_CODIGO_FK = "PRO_CODIGO";
+    public static final String IPE_QUANTIDADE = "IPE_QUANTIDADE";
+    public static final String IPE_PRECO_UNITARIO = "IPE_PRECO_UNITARIO";
+    public static final String TODOS_ITEM_PEDIDO = "select * from tbItemPedido";
+    
+    //consultas extras
+    //subTotal do pedido
+    public static final String SUBTOTAL_CLIENTE = "select sum(IPE_PRECO_UNITARIO * IPE_QUANTIDADE) SUBTOTAL, \n" +
+                                                                                "group_concat(IP.PRO_CODIGO separator ',') PRODUTOS,\n" +
+                                                                                "group_concat(IP.IPE_QUANTIDADE separator ',') QUANTIDADES\n" +
+                                                                                "from tbItemPedido IP join tbPedido PED\n" +
+                                                                                "   on IP.PED_CODIGO = PED.PED_CODIGO\n" +
+                                                                                "group by PED.PED_CODIGO";
+    public static final String SUBTOTAL = "SUBTOTAL";
+    public static final String PRODUTOS = "PRODUTOS";
+    public static final String QUANTIDADES = "QUANTIDADES";
+    //
+    
+    //
 }
-
-
-
-/*ResultSet resultSet = conexao.createStatement().executeQuery("SELECT * FROM tbProduto");
-  while (resultSet.next()) {
-                int codigo = resultSet.getInt("PRO_CODIGO");
-                String nome = resultSet.getString("PRO_NOME");
-                double preco = resultSet.getDouble("PRO_PRECO");
-                int quantidadeEstoque = resultSet.getInt("PRO_QUANTIDADE_ESTOQUE");
-                String categoria = resultSet.getString("PRO_CATEGORIA");
-
-                System.out.println("Código: " + codigo);
-                System.out.println("Nome: " + nome);
-                System.out.println("Preço: " + preco);
-                System.out.println("Quantidade em Estoque: " + quantidadeEstoque);
-                System.out.println("Categoria: " + categoria);
-                System.out.println();
-            }
-*/
-
-
 /*String sql = "INSERT INTO usuario(nome,cpf,email,telefone) VALUES(?,?,?,?)";  
 
         try {  
@@ -41,28 +56,3 @@ public final class Consts {
 
              stmt.execute();  
             stmt.close(); */
-
-
-
-//try {
-//                    Connection cnct = jfci.criarConnection();
-//                    ResultSet result = cnct.createStatement().executeQuery("select * from tbProduto");
-//
-//                    while(result.next()){
-//                        int codigo = result.getInt("PRO_CODIGO");
-//                        String nome = result.getString("PRO_NOME");
-//                        double preco = result.getDouble("PRO_PRECO");
-//                        int quantidadeEstoque = result.getInt("PRO_QUANTIDADE_ESTOQUE");
-//                        String descricao = result.getString("PRO_DESCRICAO");
-//
-//                        System.out.println("Código: " + codigo);
-//                        System.out.println("Nome: " + nome);
-//                        System.out.println("Preço: " + preco);
-//                        System.out.println("Quantidade em Estoque: " + quantidadeEstoque);
-//                        System.out.println("Descrição: " + descricao);
-//                        System.out.println();
-//                    }
-//
-//                } catch (SQLException ex) {
-//                    Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
-//                }

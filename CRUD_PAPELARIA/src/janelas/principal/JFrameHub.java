@@ -9,6 +9,8 @@ import java.util.Date;
 import javax.swing.*;
 import janelas.loginbd.JFrameConexaoInicial;
 import janelas.principal.exibir.exibirProduto;
+import janelas.principal.exibir.exibirPedido;
+import janelas.principal.deletar.deletarProduto;
 import java.sql.SQLException;
 
 
@@ -212,6 +214,11 @@ public class JFrameHub extends javax.swing.JFrame {
 
         btnExibirPedido.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/hub/listar_icon.png"))); // NOI18N
         btnExibirPedido.setText("Pedido");
+        btnExibirPedido.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnExibirPedidoActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
@@ -263,6 +270,11 @@ public class JFrameHub extends javax.swing.JFrame {
 
         btnApagarProduto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/hub/apagar_icon.png"))); // NOI18N
         btnApagarProduto.setText("Produto");
+        btnApagarProduto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnApagarProdutoActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
         jPanel7.setLayout(jPanel7Layout);
@@ -352,6 +364,14 @@ public class JFrameHub extends javax.swing.JFrame {
     private void btnExibirProdutosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExibirProdutosActionPerformed
         new exibirProduto(conec).setVisible(true);
     }//GEN-LAST:event_btnExibirProdutosActionPerformed
+
+    private void btnExibirPedidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExibirPedidoActionPerformed
+        new exibirPedido(conec).setVisible(true);
+    }//GEN-LAST:event_btnExibirPedidoActionPerformed
+
+    private void btnApagarProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnApagarProdutoActionPerformed
+        new deletarProduto(conec).setVisible(true);
+    }//GEN-LAST:event_btnApagarProdutoActionPerformed
 
     private void atualizarDataHora(JTextField txtHorario, JTextField txtData) {
         // Obter o horário atual
