@@ -11,4 +11,10 @@
 ###  Data de entrega: 18/12/2023
 
 ## Status: 
-### Imcompleto!
+### Criar: Incompleto!
+### Alterar: Incompleto!
+### Exibir: Completo!
+### Excluir: Completo!
+### Temas: Incompleto!
+### Banco de Dados: Completo!
+### Scripts Banco de Dados: Completo!
