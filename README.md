@@ -18,3 +18,8 @@
 ### Temas: Incompleto!
 ### Banco de Dados: Completo!
 ### Scripts Banco de Dados: Completo!
+
+## Como Usar:
+### Passo 1: Instalar o MySql.
+### Passo 2: Instalar o banco de dados do projeto!
+### Passo 3: Pronto! Só executar a main!
