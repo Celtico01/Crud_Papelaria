@@ -1,4 +1,4 @@
-# AvaliacaoFinal_T.E.P.
+# AvaliacaoFinal T.E.P.
 ## Requisitos:
 ### Utilizar o SGBD MySQL para resolução das questões abaixo (OBRIGATORIAMENTE) e a IDE NetBeans;
 ### As questões envolverão conceitos e implementações relacionados a banco de dados e GUI´s.
