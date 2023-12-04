@@ -1,5 +1,7 @@
 package janelas.principal;
 
+import constantes.Consts;
+import interfaces.Temas;
 import java.awt.event.ActionEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
@@ -8,18 +10,30 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import javax.swing.*;
 import janelas.loginbd.JFrameConexaoInicial;
+import janelas.principal.deletar.deletarPedido;
 import janelas.principal.exibir.exibirProduto;
 import janelas.principal.exibir.exibirPedido;
 import janelas.principal.deletar.deletarProduto;
 import java.sql.SQLException;
 
 
-public class JFrameHub extends javax.swing.JFrame {
+public final class JFrameHub extends javax.swing.JFrame implements Temas{
     private final Connection conec;
+    private final int tema;
     
-    public JFrameHub(Connection conec) {
+    public JFrameHub(Connection conec, int tema) {
         this.conec = conec;
+        this.tema = tema;
+        
         initComponents();
+        
+        if(this.tema == Consts.TEMA_CLARO){
+            temaClaro();
+        }
+        else if(this.tema == Consts.TEMA_ESCURO){
+            temaEscuro();
+        }
+        
         
         txtStatus.setText("Conectado");
         
@@ -267,6 +281,11 @@ public class JFrameHub extends javax.swing.JFrame {
 
         btnApagarPedido.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/hub/apagar_icon.png"))); // NOI18N
         btnApagarPedido.setText("Pedido");
+        btnApagarPedido.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnApagarPedidoActionPerformed(evt);
+            }
+        });
 
         btnApagarProduto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/hub/apagar_icon.png"))); // NOI18N
         btnApagarProduto.setText("Produto");
@@ -362,16 +381,20 @@ public class JFrameHub extends javax.swing.JFrame {
     }//GEN-LAST:event_btnDesconectarActionPerformed
 
     private void btnExibirProdutosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExibirProdutosActionPerformed
-        new exibirProduto(conec).setVisible(true);
+        new exibirProduto(conec, tema).setVisible(true);
     }//GEN-LAST:event_btnExibirProdutosActionPerformed
 
     private void btnExibirPedidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExibirPedidoActionPerformed
-        new exibirPedido(conec).setVisible(true);
+        new exibirPedido(conec, tema).setVisible(true);
     }//GEN-LAST:event_btnExibirPedidoActionPerformed
 
     private void btnApagarProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnApagarProdutoActionPerformed
-        new deletarProduto(conec).setVisible(true);
+        new deletarProduto(conec, tema).setVisible(true);
     }//GEN-LAST:event_btnApagarProdutoActionPerformed
+    
+    private void btnApagarPedidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnApagarPedidoActionPerformed
+        new deletarPedido(conec, tema).setVisible(true);
+    }//GEN-LAST:event_btnApagarPedidoActionPerformed
 
     private void atualizarDataHora(JTextField txtHorario, JTextField txtData) {
         // Obter o horário atual
@@ -398,6 +421,16 @@ public class JFrameHub extends javax.swing.JFrame {
        catch(SQLException sqlE){
            JOptionPane.showMessageDialog(this, "Erro: " + sqlE.getMessage(), "ERRO", JOptionPane.ERROR_MESSAGE);
        }
+    }
+    
+    @Override
+    public void temaClaro() {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+        
+    @Override
+    public void temaEscuro() {
+        throw new UnsupportedOperationException("Not supported yet.");
     }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -2,44 +2,30 @@ package janelas.principal.exibir;
 
 import java.sql.Connection;
 import constantes.Consts;
+import interfaces.Temas;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
-public class exibirProduto extends javax.swing.JFrame {
+public final class exibirProduto extends javax.swing.JFrame implements Temas{
+    private final int tema;
     private final Connection conec;
-    public exibirProduto(Connection conec) {
+    
+    public exibirProduto(Connection conec, int tema) {
         this.conec = conec;
+        this.tema = tema;
+        
         initComponents();
         
-        DefaultTableModel tabelaProdutos = 
-                                      (DefaultTableModel) tblProdutos.getModel();
-        
-        ResultSet retorno = null;
-        try{
-            retorno = conec.createStatement().executeQuery(Consts.TODOS_OS_PRODUTOS);
-            while(retorno.next()){
-                Object[] produtos = new Object[]{
-                    retorno.getInt(Consts.PRO_CODIGO),
-                    retorno.getString(Consts.PRO_NOME),
-                    retorno.getString(Consts.PRO_DESCRICAO),
-                    retorno.getDouble(Consts.PRO_PRECO),
-                    retorno.getInt(Consts.PRO_QUANTIDADE_ESTOQUE)
-                };
-                tabelaProdutos.addRow(produtos);
-            }
+        if(this.tema == Consts.TEMA_CLARO){
+            temaClaro();
         }
-        catch(SQLException sqlE){
-            JOptionPane.showMessageDialog(null, "Erro: " + sqlE.getMessage(), "ERRO", JOptionPane.ERROR_MESSAGE);
+        else if(this.tema == Consts.TEMA_ESCURO){
+            temaEscuro();
         }
         
-        
-        
-        
-        
-        
-        
+        atualizarTabela();
     }
 
     @SuppressWarnings("unchecked")
@@ -111,6 +97,38 @@ public class exibirProduto extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
+    private void atualizarTabela(){
+        DefaultTableModel tabelaProdutos = 
+                                      (DefaultTableModel) tblProdutos.getModel();
+        
+        ResultSet retorno = null;
+        try{
+            retorno = conec.createStatement().executeQuery(Consts.TODOS_OS_PRODUTOS);
+            while(retorno.next()){
+                Object[] produtos = new Object[]{
+                    retorno.getInt(Consts.PRO_CODIGO),
+                    retorno.getString(Consts.PRO_NOME),
+                    retorno.getString(Consts.PRO_DESCRICAO),
+                    retorno.getDouble(Consts.PRO_PRECO),
+                    retorno.getInt(Consts.PRO_QUANTIDADE_ESTOQUE)
+                };
+                tabelaProdutos.addRow(produtos);
+            }
+        }
+        catch(SQLException sqlE){
+            JOptionPane.showMessageDialog(null, "Erro: " + sqlE.getMessage(), "ERRO", JOptionPane.ERROR_MESSAGE);
+        }
+    }
+    
+    @Override
+    public void temaClaro() {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+        
+    @Override
+    public void temaEscuro() {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel jPanel;

@@ -2,43 +2,30 @@ package janelas.principal.exibir;
 
 import java.sql.Connection;
 import constantes.Consts;
+import interfaces.Temas;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
-public class exibirPedido extends javax.swing.JFrame {
+public final class exibirPedido extends javax.swing.JFrame implements Temas{
+    private final int tema;
     private final Connection conec;
 
-    public exibirPedido(Connection conec) {
-        initComponents();
+    public exibirPedido(Connection conec, int tema) {
         this.conec = conec;
+        this.tema = tema;
         
-        DefaultTableModel tabelaPedidos = 
-                                      (DefaultTableModel) tblPedidos.getModel();
+        initComponents();
         
-        ResultSet consu1 = null, consu2 = null;
-        
-        try{
-            consu1 = conec.createStatement().executeQuery(Consts.TODOS_OS_PEDIDOS);
-            consu2 = conec.createStatement().executeQuery(Consts.SUBTOTAL_CLIENTE);
-            
-            while(consu1.next() && consu2.next()){
-                Object[] pedidos = new Object[]{
-                    consu1.getInt(Consts.PED_CODIGO),
-                    consu1.getString(Consts.PED_NOME_CLIENTE),
-                    consu1.getDate(Consts.PED_DATA_PEDIDO),
-                    consu2.getString(Consts.PRODUTOS),
-                    consu2.getString(Consts.QUANTIDADES),
-                    consu2.getDouble(Consts.SUBTOTAL)
-                };
-                tabelaPedidos.addRow(pedidos);
-            }
+        if(this.tema == Consts.TEMA_CLARO){
+            temaClaro();
         }
-        catch(SQLException sqlE){
-            JOptionPane.showMessageDialog(null, "Erro: " + sqlE.getMessage(), "ERRO", JOptionPane.ERROR_MESSAGE);
+        else if(this.tema == Consts.TEMA_ESCURO){
+            temaEscuro();
         }
         
+        atualizarTabela();
     }
 
     @SuppressWarnings("unchecked")
@@ -48,6 +35,7 @@ public class exibirPedido extends javax.swing.JFrame {
         jPanel = new javax.swing.JPanel();
         jScrollPane = new javax.swing.JScrollPane();
         tblPedidos = new javax.swing.JTable();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Pedidos");
@@ -73,20 +61,28 @@ public class exibirPedido extends javax.swing.JFrame {
         });
         jScrollPane.setViewportView(tblPedidos);
 
+        jLabel1.setText("P.R.:Produtos Removidos!");
+
         javax.swing.GroupLayout jPanelLayout = new javax.swing.GroupLayout(jPanel);
         jPanel.setLayout(jPanelLayout);
         jPanelLayout.setHorizontalGroup(
             jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 686, Short.MAX_VALUE)
+                .addGroup(jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 686, Short.MAX_VALUE)
+                    .addGroup(jPanelLayout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         jPanelLayout.setVerticalGroup(
             jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelLayout.createSequentialGroup()
-                .addComponent(jScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 317, Short.MAX_VALUE)
-                .addContainerGap())
+                .addComponent(jScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 293, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel1)
+                .addGap(0, 12, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -109,9 +105,54 @@ public class exibirPedido extends javax.swing.JFrame {
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
-
+    
+    private void atualizarTabela(){
+        DefaultTableModel tabelaPedidos = 
+                                      (DefaultTableModel) tblPedidos.getModel();
+        
+        ResultSet consu = null;
+        
+        try{
+            consu = conec.createStatement().executeQuery(Consts.SUBTOTAL_CLIENTE);
+            
+            while(consu.next()){
+                Object[] pedidos = new Object[]{
+                    consu.getInt(Consts.PED_CODIGO),
+                    consu.getString(Consts.PED_NOME_CLIENTE),
+                    consu.getDate(Consts.PED_DATA_PEDIDO),
+                    null,
+                    null,
+                    consu.getDouble(Consts.SUBTOTAL)
+                };
+                if(consu.getString(Consts.PRODUTOS) == null ||
+                        consu.getString(Consts.QUANTIDADES).length() > consu.getString(Consts.PRODUTOS).length()){
+                    pedidos[3] = "P.R.";
+                    pedidos[4] = "P.R.";
+                }
+                else{
+                    pedidos[3] = consu.getString(Consts.PRODUTOS);
+                    pedidos[4] = consu.getString(Consts.QUANTIDADES);
+                }
+                tabelaPedidos.addRow(pedidos);
+            }
+        }
+        catch(SQLException sqlE){
+            JOptionPane.showMessageDialog(null, "Erro: " + sqlE.getMessage(), "ERRO", JOptionPane.ERROR_MESSAGE);
+        }
+    }
+    
+    @Override
+    public void temaClaro() {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+        
+    @Override
+    public void temaEscuro() {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel;
     private javax.swing.JScrollPane jScrollPane;
     private javax.swing.JTable tblPedidos;

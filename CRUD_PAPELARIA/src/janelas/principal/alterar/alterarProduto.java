@@ -1,9 +1,25 @@
 package janelas.principal.alterar;
 
-public class alterarProduto extends javax.swing.JFrame {
+import constantes.Consts;
+import interfaces.Temas;
+import java.sql.Connection;
 
-    public alterarProduto() {
+public final class alterarProduto extends javax.swing.JFrame implements Temas{
+    private final int tema;
+    private final Connection conec;
+    
+    public alterarProduto(Connection conec, int tema) {
+        this.conec = conec;
+        this.tema = tema;
+        
         initComponents();
+        
+        if(this.tema == Consts.TEMA_CLARO){
+            temaClaro();
+        }
+        else if(this.tema == Consts.TEMA_ESCURO){
+            temaEscuro();
+        }
     }
 
     @SuppressWarnings("unchecked")
@@ -25,7 +41,17 @@ public class alterarProduto extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+    
+    
+    @Override
+    public void temaClaro() {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+        
+    @Override
+    public void temaEscuro() {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     // End of variables declaration//GEN-END:variables

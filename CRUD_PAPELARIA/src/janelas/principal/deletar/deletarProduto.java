@@ -2,6 +2,7 @@ package janelas.principal.deletar;
 
 import java.sql.Connection;
 import constantes.Consts;
+import interfaces.Temas;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -10,34 +11,24 @@ import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import javax.swing.table.DefaultTableModel;
 
-public class deletarProduto extends javax.swing.JFrame {
+public final class deletarProduto extends javax.swing.JFrame implements Temas{
+    private final int tema;
     private final Connection conec;
-    public deletarProduto(Connection conec) {
+    
+    public deletarProduto(Connection conec, int tema) {
         this.conec = conec;
+        this.tema = tema;
+        
         initComponents();
         
-        DefaultTableModel tabelaProdutos = 
-                                      (DefaultTableModel) tblProdutos.getModel();
+        if(this.tema == Consts.TEMA_CLARO){
+            temaClaro();
+        }
+        else if(this.tema == Consts.TEMA_ESCURO){
+            temaEscuro();
+        }
         
-        ResultSet retorno = null;
-        //consu1
-        try{
-            retorno = conec.createStatement().executeQuery(Consts.TODOS_OS_PRODUTOS);
-            while(retorno.next()){
-                Object[] produtos = new Object[]{
-                    retorno.getInt(Consts.PRO_CODIGO),
-                    retorno.getString(Consts.PRO_NOME),
-                    retorno.getString(Consts.PRO_DESCRICAO),
-                    retorno.getDouble(Consts.PRO_PRECO),
-                    retorno.getInt(Consts.PRO_QUANTIDADE_ESTOQUE)
-                };
-                cmBoxItens.addItem("Código " + retorno.getInt(Consts.PRO_CODIGO));
-                tabelaProdutos.addRow(produtos);
-            }
-        }
-        catch(SQLException sqlE){
-            JOptionPane.showMessageDialog(null, "Erro: " + sqlE.getMessage(), "ERRO", JOptionPane.ERROR_MESSAGE);
-        }
+        atualizarTabela();
         
         //evento para selecionar item na tabela
         tblProdutos.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
@@ -95,7 +86,9 @@ public class deletarProduto extends javax.swing.JFrame {
         );
         jPanelLayout.setVerticalGroup(
             jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 245, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(jPanelLayout.createSequentialGroup()
+                .addComponent(jScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 233, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Apagar"));
@@ -127,23 +120,22 @@ public class deletarProduto extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 265, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(cmBoxItens, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(cmBoxItens, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btnDeletar)
-                .addContainerGap(158, Short.MAX_VALUE))
+                .addContainerGap(232, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(cmBoxItens, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(btnDeletar, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 39, Short.MAX_VALUE))
-                        .addGap(4, 4, 4)))
+                    .addComponent(btnDeletar, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(cmBoxItens, javax.swing.GroupLayout.DEFAULT_SIZE, 38, Short.MAX_VALUE)
+                        .addGap(3, 3, 3))
+                    .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
 
@@ -164,8 +156,8 @@ public class deletarProduto extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(13, Short.MAX_VALUE))
         );
 
         pack();
@@ -177,17 +169,13 @@ public class deletarProduto extends javax.swing.JFrame {
        if(escolha == JOptionPane.YES_OPTION){
            //execute query
            try{
-               DefaultTableModel def = (DefaultTableModel) tblProdutos.getModel();
                PreparedStatement statement;
                statement = conec.prepareStatement(Consts.APAGAR_PRODUTO);
                
-               
-               
-               //statement.setString(1,  ); //preciso conseguir o codigo do produto certin
+               statement.setString(1, cmBoxItens.getSelectedItem().toString());
                statement.executeUpdate();
                
-               cmBoxItens.removeItemAt(cmBoxItens.getSelectedIndex());
-               def.removeRow(tblProdutos.getSelectedRow());
+               atualizarTabela();
                
            }
            catch(SQLException sqlE){
@@ -195,9 +183,7 @@ public class deletarProduto extends javax.swing.JFrame {
         }
            
        }
-       else{
-           //volta
-       }
+       //se for não o programa não faz nada!
     }//GEN-LAST:event_btnDeletarActionPerformed
 
     private void cmBoxItensActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmBoxItensActionPerformed
@@ -208,6 +194,44 @@ public class deletarProduto extends javax.swing.JFrame {
         tblProdutos.getSelectionModel().setSelectionInterval(cmBoxItens.getSelectedIndex(), cmBoxItens.getSelectedIndex());
     }//GEN-LAST:event_cmBoxItensItemStateChanged
 
+    private void atualizarTabela(){
+        DefaultTableModel tabelaProdutos = 
+                                      (DefaultTableModel) tblProdutos.getModel();
+        
+        tabelaProdutos.setNumRows(0);
+        cmBoxItens.removeAllItems();
+        
+        ResultSet consu = null;
+        
+        //consu
+        try{
+            consu = conec.createStatement().executeQuery(Consts.TODOS_OS_PRODUTOS);
+            while(consu.next()){
+                Object[] produtos = new Object[]{
+                    consu.getInt(Consts.PRO_CODIGO),
+                    consu.getString(Consts.PRO_NOME),
+                    consu.getString(Consts.PRO_DESCRICAO),
+                    consu.getDouble(Consts.PRO_PRECO),
+                    consu.getInt(Consts.PRO_QUANTIDADE_ESTOQUE)
+                };
+                cmBoxItens.addItem(consu.getString(Consts.PRO_CODIGO));
+                tabelaProdutos.addRow(produtos);
+            }
+        }
+        catch(SQLException sqlE){
+            JOptionPane.showMessageDialog(null, "Erro: " + sqlE.getMessage(), "ERRO", JOptionPane.ERROR_MESSAGE);
+        }
+    }
+    
+    @Override
+    public void temaClaro() {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+        
+    @Override
+    public void temaEscuro() {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnDeletar;

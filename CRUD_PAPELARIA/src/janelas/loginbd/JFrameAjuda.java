@@ -1,12 +1,23 @@
 package janelas.loginbd;
 
-public class JFrameAjuda extends javax.swing.JFrame {
+import constantes.Consts;
+import interfaces.Temas;
 
-    public JFrameAjuda() {
+public final class JFrameAjuda extends javax.swing.JFrame implements Temas{
+    private final int tema;
+    public JFrameAjuda(int tema) {
+        this.tema = tema;
         initComponents();
         lblUsuario.setText("<html>O usuário é o mesmo que está no MySql e geralmente é \"root\", verifique no MySql e tente novamente! </html>");
         lblSenha.setText("<html>A senha geralmente é a mesma que a incial da maquina ou é inserida durante a instalação do MySql. </html>");
         lblSenhaLess.setText("<html>Se você não possui senha então é só inserir o usuário e marcar a caixinha!</html>");
+        
+        if(this.tema == Consts.TEMA_CLARO){
+            temaClaro();
+        }
+        else if(this.tema == Consts.TEMA_ESCURO){
+            temaEscuro();
+        }
     }
 
     @SuppressWarnings("unchecked")
@@ -135,6 +146,16 @@ public class JFrameAjuda extends javax.swing.JFrame {
         
     }//GEN-LAST:event_btnVoltarActionPerformed
 
+    @Override
+    public void temaClaro() {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+        
+    @Override
+    public void temaEscuro() {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnVoltar;
     private javax.swing.JPanel jPanel1;
