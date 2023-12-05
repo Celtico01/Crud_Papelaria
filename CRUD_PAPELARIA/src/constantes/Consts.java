@@ -2,7 +2,6 @@ package constantes;
 
 public final class Consts {
     //tema
-
     /**
      *Tema Claro.
      */
@@ -51,9 +50,16 @@ public final class Consts {
     public static final String QUANTIDADE_PRODUTOS = "select count(*) QTDE from tbProduto";
 
     /**
-     *Consulta para apagar produto.
+     *Script para apagar produto.
      */
     public static final String APAGAR_PRODUTO = "delete from tbProduto where PRO_CODIGO = ?";
+
+    /**
+     *Consulta para obter o maior codigo de produto
+     */
+    public static final String MAIOR_COD_PRODUTO = "select max(PRO_CODIGO) from tbProdudo";
+    
+    public static final String INSERT_TBPRODUTO = "insert into tbProduto (PRO_NOME, PRO_DESCRICAO, PRO_PRECO, PRO_QUANTIDADE_ESTOQUE) values (?,?,?,?)";
     
     //consts pedidos
 

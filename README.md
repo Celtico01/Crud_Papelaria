@@ -16,6 +16,7 @@
 ### Exibir: Completo!
 ### Excluir: Completo!
 ### Temas: Incompleto!
+### Menu bar: Incompleto!
 ### Banco de Dados: Completo!
 ### Scripts Banco de Dados: Completo!
 
