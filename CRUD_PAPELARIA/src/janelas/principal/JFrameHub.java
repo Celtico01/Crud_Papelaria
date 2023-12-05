@@ -10,6 +10,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import javax.swing.*;
 import janelas.loginbd.JFrameConexaoInicial;
+import janelas.principal.criar.criarPedido;
 import janelas.principal.criar.criarProduto;
 import janelas.principal.deletar.deletarPedido;
 import janelas.principal.exibir.exibirProduto;
@@ -200,6 +201,11 @@ public final class JFrameHub extends javax.swing.JFrame implements Temas{
 
         btnCriarPedido.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/hub/criarPedido_icon.png"))); // NOI18N
         btnCriarPedido.setText("Pedido");
+        btnCriarPedido.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCriarPedidoActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -403,6 +409,10 @@ public final class JFrameHub extends javax.swing.JFrame implements Temas{
     private void btnCriarProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCriarProdutoActionPerformed
         new criarProduto(conec, tema).setVisible(true);
     }//GEN-LAST:event_btnCriarProdutoActionPerformed
+
+    private void btnCriarPedidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCriarPedidoActionPerformed
+        new criarPedido(conec, tema).setVisible(true);
+    }//GEN-LAST:event_btnCriarPedidoActionPerformed
 
     private void atualizarDataHora(JTextField txtHorario, JTextField txtData) {
         // Obter o horário atual

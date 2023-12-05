@@ -59,7 +59,15 @@ public final class Consts {
      */
     public static final String MAIOR_COD_PRODUTO = "select max(PRO_CODIGO) from tbProdudo";
     
+    /**
+     *Inserir dados na tabela produto
+     */
     public static final String INSERT_TBPRODUTO = "insert into tbProduto (PRO_NOME, PRO_DESCRICAO, PRO_PRECO, PRO_QUANTIDADE_ESTOQUE) values (?,?,?,?)";
+    
+    /**
+     *Pegar o preço do produto.
+     */
+    public static final String PRECO_PRODUTO = "select PRO_PRECO from tbProduto where PRO_CODIGO = ?";
     
     //consts pedidos
 

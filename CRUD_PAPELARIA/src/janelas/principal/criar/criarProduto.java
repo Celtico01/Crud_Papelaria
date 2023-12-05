@@ -48,6 +48,7 @@ public final class criarProduto extends javax.swing.JFrame implements Temas{
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Criar Produto");
+        setResizable(false);
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Criar"));
 
@@ -167,6 +168,7 @@ public final class criarProduto extends javax.swing.JFrame implements Temas{
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void txtProDescActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtProDescActionPerformed
@@ -180,10 +182,10 @@ public final class criarProduto extends javax.swing.JFrame implements Temas{
     private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed
         txtProPreco.setText(txtProPreco.getText().replace(',', '.'));
         try{
-            if(txtProNome.getText().isBlank() || 
-                txtProDesc.getText().isBlank() || 
-                txtProPreco.getText().isBlank() ||
-                txtProEstoque.getText().isBlank()){
+            if(txtProNome.getText().isEmpty()|| //java 11
+                txtProDesc.getText().isEmpty()|| //java 11
+                txtProPreco.getText().isEmpty()|| //java 11
+                txtProEstoque.getText().isEmpty()){ //java 11
                 throw new Exception("Preencha todos os campos!");
             }
             if(txtProNome.getText().length() > 255){
