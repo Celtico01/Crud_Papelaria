@@ -119,7 +119,7 @@ public final class exibirPedido extends javax.swing.JFrame implements Temas{
                 Object[] pedidos = new Object[]{
                     consu.getInt(Consts.PED_CODIGO),
                     consu.getString(Consts.PED_NOME_CLIENTE),
-                    consu.getDate(Consts.PED_DATA_PEDIDO),
+                    consu.getString(Consts.PED_DATA_PEDIDO),
                     null,
                     null,
                     consu.getDouble(Consts.SUBTOTAL)

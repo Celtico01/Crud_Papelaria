@@ -243,12 +243,7 @@ public final class criarProduto extends javax.swing.JFrame implements Temas{
         txtProPreco.setText("");
         txtProEstoque.setText("");
     }
-    
-    /**
-     * 
-     * @param str
-     * verifica se é double
-     */
+
     private static boolean isDouble(String str){
         try {
             Double.parseDouble(str); 
@@ -258,12 +253,7 @@ public final class criarProduto extends javax.swing.JFrame implements Temas{
             return false;
         }
     }
-    
-    /**
-     * 
-     * @param str
-     * verifica se é integer
-     */
+
     private static boolean isInteger(String str){
         try{
             Integer.parseInt(str);
@@ -291,8 +281,6 @@ public final class criarProduto extends javax.swing.JFrame implements Temas{
 
         }
     }
-    
-    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnLimpar;

@@ -45,29 +45,39 @@ public final class Consts {
     public static final String TODOS_OS_PRODUTOS = "select * from tbProduto";
 
     /**
-     *Consulta para obter a quantidade de produtos
+     *Consulta para obter a quantidade de produtos.
      */
     public static final String QUANTIDADE_PRODUTOS = "select count(*) QTDE from tbProduto";
 
     /**
-     *Script para apagar produto.
+     *Script para apagar produto. (PREPARED STATEMENT).
      */
     public static final String APAGAR_PRODUTO = "delete from tbProduto where PRO_CODIGO = ?";
 
     /**
-     *Consulta para obter o maior codigo de produto
+     *Consulta para obter o maior codigo de produto.
      */
     public static final String MAIOR_COD_PRODUTO = "select max(PRO_CODIGO) from tbProdudo";
     
     /**
-     *Inserir dados na tabela produto
+     *Inserir dados na tabela produto (PREPARED STATEMENT).
      */
     public static final String INSERT_TBPRODUTO = "insert into tbProduto (PRO_NOME, PRO_DESCRICAO, PRO_PRECO, PRO_QUANTIDADE_ESTOQUE) values (?,?,?,?)";
     
     /**
-     *Pegar o preço do produto.
+     *Pegar o preço do produto. (PREPARED STATEMENT).
      */
     public static final String PRECO_PRODUTO = "select PRO_PRECO from tbProduto where PRO_CODIGO = ?";
+    
+    /**
+     *Atualizar o estoque de produtos (PREPARED STATEMENT).
+     */
+    public static final String ALTERAR_QTDE_PRODUTO = "update tbProduto set PRO_QUANTIDADE_ESTOQUE = PRO_QUANTIDADE_ESTOQUE - ? where PRO_CODIGO = ?";
+    
+    /**
+     *Obter a quantidade de produtos no estoque (PREPARED STATEMENT).
+     */
+    public static final String OBTER_QUANTIDADE_PRODUTO = "select PRO_QUANTIDADE_ESTOQUE from tbProduto where PRO_CODIGO = ?";
     
     //consts pedidos
 
@@ -87,9 +97,24 @@ public final class Consts {
     public static final String PED_DATA_PEDIDO = "PED_DATA_PEDIDO";
     
     /*
-    *Consulta para apagar pedido.
+    *Script para apagar pedido. (PREPARED STATEMENT).
     */
     public static final String APAGAR_PEDIDO = "delete from tbPedido where PED_CODIGO = ?";
+    
+    /**
+     *Script de inserção para pedido. (PREPARED STATEMENT).
+     */
+    public static final String INSERIR_PEDIDO = "insert into tbPedido (PED_NOME_CLIENTE, PED_DATA_PEDIDO) values (?, ?)";
+    
+    /**
+     *Script para obter o ultimo pedido realizado.
+     */
+    public static final String ULTIMO_PEDIDO = "select max(PED_CODIGO) MAIOR from tbPedido";
+    
+    /**
+     *Retorno do script de obter o ultimo pedido.
+     */
+    public static final String ULTIMO = "MAIOR";
     
     //consts ItemPedido
 
@@ -107,6 +132,11 @@ public final class Consts {
      *Atributo PRECO_UNITARIO da tabela ItemPedido.
      */
     public static final String IPE_PRECO_UNITARIO = "IPE_PRECO_UNITARIO";
+    
+    /**
+     *Script de inserção na tabela ItemPedido. (PREPARED STATEMENT).
+     */
+    public static final String INSERIR_ITEM = "insert into tbItemPedido (PED_CODIGO, PRO_CODIGO, IPE_QUANTIDADE, IPE_PRECO_UNITARIO) values (?,?,?,?)";
     
     //consultas extras
     //subTotal do pedido
@@ -142,15 +172,3 @@ public final class Consts {
     
     //
 }
-/*String sql = "INSERT INTO usuario(nome,cpf,email,telefone) VALUES(?,?,?,?)";  
-
-        try {  
-            PreparedStatement stmt = connection.prepareStatement(sql);  
-
-            stmt.setString(1, usuario.getNome());  
-            stmt.setString(2, usuario.getCpf());  
-            stmt.setString(3, usuario.getEmail());  
-            stmt.setString(4, usuario.getTelefone());  
-
-             stmt.execute();  
-            stmt.close(); */

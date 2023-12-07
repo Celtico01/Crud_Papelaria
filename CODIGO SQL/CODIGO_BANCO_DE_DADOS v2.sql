@@ -16,7 +16,7 @@ CREATE TABLE tbProduto (
 CREATE TABLE tbPedido (
     PED_CODIGO INT AUTO_INCREMENT PRIMARY KEY,
     PED_NOME_CLIENTE VARCHAR(255) NOT NULL,
-    PED_DATA_PEDIDO DATE NOT NULL
+    PED_DATA_PEDIDO VARCHAR(15) NOT NULL
 );
 
 -- Criação da tabela 'itens_pedido' para representar os produtos em um pedido

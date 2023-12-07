@@ -195,9 +195,8 @@ public final class deletarPedido extends javax.swing.JFrame implements Temas{
             catch(SQLException sqlE){
                 JOptionPane.showMessageDialog(null, "Erro: " + sqlE.getMessage(), "ERRO", JOptionPane.ERROR_MESSAGE);
             }
-
         }
-        //se for não o programa não faz nada!
+        //se for não o programa só volta para a janela anterior!
     }//GEN-LAST:event_btnDeletarActionPerformed
 
     private void atualizarTabela(){
@@ -216,7 +215,7 @@ public final class deletarPedido extends javax.swing.JFrame implements Temas{
                 Object[] pedidos = new Object[]{
                     consu.getInt(Consts.PED_CODIGO),
                     consu.getString(Consts.PED_NOME_CLIENTE),
-                    consu.getDate(Consts.PED_DATA_PEDIDO),
+                    consu.getString(Consts.PED_DATA_PEDIDO),
                     null,
                     null,
                     consu.getDouble(Consts.SUBTOTAL)
