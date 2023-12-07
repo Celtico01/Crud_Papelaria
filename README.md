@@ -11,7 +11,7 @@
 ###  Data de entrega: 18/12/2023
 
 ## Status: 
-### Criar: Incompleto!
+### Criar: Completo!
 ### Alterar: Incompleto!
 ### Exibir: Completo!
 ### Excluir: Completo!
