@@ -309,8 +309,8 @@ public final class criarPedido extends javax.swing.JFrame implements Temas{
     
     private void btnAdicionarbtnAdicionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdicionarbtnAdicionarActionPerformed
         try{
-            if(txtProCod.getText().isBlank()|| //java 11
-                txtProQuantidade.getText().isBlank()){ //java 11
+            if(txtProCod.getText().isEmpty()|| //java 11
+                txtProQuantidade.getText().isEmpty()){ //java 11
                 throw new IllegalArgumentException("Preencha todos os campos!");
             }
             if(!isInteger(txtProCod.getText())){
@@ -386,7 +386,7 @@ public final class criarPedido extends javax.swing.JFrame implements Temas{
         try{
             DefaultTableModel tblProd = (DefaultTableModel) tblLista.getModel();
             
-            if(txtCliNome.getText().isBlank()){
+            if(txtCliNome.getText().isEmpty()){
                 throw new Exception("Preencha todos os campos!");
             }
             if(tblProd.getRowCount() == 0){
