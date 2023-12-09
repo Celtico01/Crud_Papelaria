@@ -12,13 +12,17 @@
 
 ## Status: 
 ### Criar: Completo!
-### Alterar: Incompleto!
+### Alterar: Completo!
 ### Exibir: Completo!
 ### Excluir: Completo!
-### Temas: Incompleto!
+### Temas: Completo!
 ### Menu bar: Incompleto!
 ### Banco de Dados: Completo!
 ### Scripts Banco de Dados: Completo!
+
+## Requisitos:
+### Java 11
+### MySQL
 
 ## Como Usar:
 ### Passo 1: Instalar o MySql.

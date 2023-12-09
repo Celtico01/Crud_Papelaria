@@ -2,6 +2,7 @@ package janelas.principal.criar;
 
 import constantes.Consts;
 import interfaces.Temas;
+import java.awt.Color;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
@@ -33,16 +34,16 @@ public final class criarProduto extends javax.swing.JFrame implements Temas{
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel1 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
+        pnlCriar = new javax.swing.JPanel();
+        lblNome = new javax.swing.JLabel();
+        lblDesc = new javax.swing.JLabel();
+        lblPreco = new javax.swing.JLabel();
+        lblEstoque = new javax.swing.JLabel();
         txtProNome = new javax.swing.JTextField();
         txtProDesc = new javax.swing.JTextField();
         txtProPreco = new javax.swing.JTextField();
         txtProEstoque = new javax.swing.JTextField();
-        jPanel2 = new javax.swing.JPanel();
+        pnlBotoes = new javax.swing.JPanel();
         btnSalvar = new javax.swing.JButton();
         btnLimpar = new javax.swing.JButton();
 
@@ -50,15 +51,15 @@ public final class criarProduto extends javax.swing.JFrame implements Temas{
         setTitle("Criar Produto");
         setResizable(false);
 
-        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Criar"));
+        pnlCriar.setBorder(javax.swing.BorderFactory.createTitledBorder("Criar"));
 
-        jLabel1.setText("Nome:");
+        lblNome.setText("Nome:");
 
-        jLabel2.setText("Descrição:");
+        lblDesc.setText("Descrição:");
 
-        jLabel3.setText("Preço:");
+        lblPreco.setText("Preço:");
 
-        jLabel4.setText("Estoque:");
+        lblEstoque.setText("Estoque:");
 
         txtProDesc.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -66,48 +67,48 @@ public final class criarProduto extends javax.swing.JFrame implements Temas{
             }
         });
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
+        javax.swing.GroupLayout pnlCriarLayout = new javax.swing.GroupLayout(pnlCriar);
+        pnlCriar.setLayout(pnlCriarLayout);
+        pnlCriarLayout.setHorizontalGroup(
+            pnlCriarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlCriarLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(pnlCriarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(lblDesc, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(lblPreco, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(lblEstoque, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(lblNome, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(pnlCriarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(txtProNome, javax.swing.GroupLayout.DEFAULT_SIZE, 120, Short.MAX_VALUE)
                     .addComponent(txtProDesc)
                     .addComponent(txtProPreco)
                     .addComponent(txtProEstoque))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
+        pnlCriarLayout.setVerticalGroup(
+            pnlCriarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlCriarLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
+                .addGroup(pnlCriarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblNome)
                     .addComponent(txtProNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
+                .addGroup(pnlCriarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblDesc)
                     .addComponent(txtProDesc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
+                .addGroup(pnlCriarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblPreco)
                     .addComponent(txtProPreco, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel4)
+                .addGroup(pnlCriarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(lblEstoque)
                     .addComponent(txtProEstoque, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Botões"));
+        pnlBotoes.setBorder(javax.swing.BorderFactory.createTitledBorder("Botões"));
 
         btnSalvar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/hub/salvar_icon.png"))); // NOI18N
         btnSalvar.setText("Salvar");
@@ -125,20 +126,20 @@ public final class criarProduto extends javax.swing.JFrame implements Temas{
             }
         });
 
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
+        javax.swing.GroupLayout pnlBotoesLayout = new javax.swing.GroupLayout(pnlBotoes);
+        pnlBotoes.setLayout(pnlBotoesLayout);
+        pnlBotoesLayout.setHorizontalGroup(
+            pnlBotoesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlBotoesLayout.createSequentialGroup()
                 .addGap(20, 20, 20)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(pnlBotoesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(btnLimpar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnSalvar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
+        pnlBotoesLayout.setVerticalGroup(
+            pnlBotoesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlBotoesLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(btnSalvar, javax.swing.GroupLayout.DEFAULT_SIZE, 50, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
@@ -152,9 +153,9 @@ public final class criarProduto extends javax.swing.JFrame implements Temas{
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(pnlCriar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(pnlBotoes, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -162,9 +163,9 @@ public final class criarProduto extends javax.swing.JFrame implements Temas{
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(pnlBotoes, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(pnlCriar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(40, Short.MAX_VALUE))
         );
 
         pack();
@@ -182,10 +183,10 @@ public final class criarProduto extends javax.swing.JFrame implements Temas{
     private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed
         txtProPreco.setText(txtProPreco.getText().replace(',', '.'));
         try{
-            if(txtProNome.getText().isEmpty()|| //java 11
-                txtProDesc.getText().isEmpty()|| //java 11
-                txtProPreco.getText().isEmpty()|| //java 11
-                txtProEstoque.getText().isEmpty()){ //java 11
+            if(txtProNome.getText().isBlank()|| //java 11
+                txtProDesc.getText().isBlank()|| //java 11
+                txtProPreco.getText().isBlank()|| //java 11
+                txtProEstoque.getText().isBlank()){ //java 11
                 throw new Exception("Preencha todos os campos!");
             }
             if(txtProNome.getText().length() > 255){
@@ -226,17 +227,7 @@ public final class criarProduto extends javax.swing.JFrame implements Temas{
             JOptionPane.showMessageDialog(this, "Erro: " + e.getMessage(), "ERRO", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_btnSalvarActionPerformed
-    
-    @Override
-    public void temaClaro() {
-        throw new UnsupportedOperationException("Not supported yet.");
-    }
-        
-    @Override
-    public void temaEscuro() {
-        throw new UnsupportedOperationException("Not supported yet.");
-    }
-    
+   
     private void limparCampos(){
         txtProNome.setText("");
         txtProDesc.setText("");
@@ -246,7 +237,7 @@ public final class criarProduto extends javax.swing.JFrame implements Temas{
 
     private static boolean isDouble(String str){
         try {
-            Double.parseDouble(str); 
+            Double.valueOf(str); 
             return true;
         } 
         catch (NumberFormatException nfe) {
@@ -256,7 +247,7 @@ public final class criarProduto extends javax.swing.JFrame implements Temas{
 
     private static boolean isInteger(String str){
         try{
-            Integer.parseInt(str);
+            Integer.valueOf(str);
             return true;
         }
         catch(NumberFormatException nfe){
@@ -278,19 +269,100 @@ public final class criarProduto extends javax.swing.JFrame implements Temas{
         }
         catch(SQLException sqlE){
             JOptionPane.showMessageDialog(null, "Erro: " + sqlE.getMessage(), "ERRO", JOptionPane.ERROR_MESSAGE);
-
         }
+    }
+    
+    @Override
+    public void temaClaro() {
+        this.getContentPane().setBackground(Color.white);
+        this.getContentPane().setForeground(Color.black);
+        lblNome.setBackground(Color.white);
+        lblDesc.setBackground(Color.white);
+        lblPreco.setBackground(Color.white);
+        lblEstoque.setBackground(Color.white);
+        lblNome.setForeground(Color.black);
+        lblDesc.setForeground(Color.black);
+        lblPreco.setForeground(Color.black);
+        lblEstoque.setForeground(Color.black);
+        txtProNome.setBackground(Color.white);
+        txtProDesc.setBackground(Color.white);
+        txtProPreco.setBackground(Color.white);
+        txtProEstoque.setBackground(Color.white);
+        txtProNome.setForeground(Color.black);
+        txtProDesc.setForeground(Color.black);
+        txtProPreco.setForeground(Color.black);
+        txtProEstoque.setForeground(Color.black);
+        btnSalvar.setBackground(Color.white);
+        btnLimpar.setBackground(Color.white);
+        btnSalvar.setForeground(Color.black);
+        btnLimpar.setForeground(Color.black);
+        pnlCriar.setBackground(Color.white);
+        pnlBotoes.setBackground(Color.white);
+        pnlCriar.setForeground(Color.black);
+        pnlBotoes.setForeground(Color.black);
+        //bordas
+        pnlCriar.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Criar", 
+                javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, 
+                javax.swing.border.TitledBorder.DEFAULT_POSITION, 
+                new java.awt.Font("Tahoma", 0, 24), 
+                new java.awt.Color(0, 0, 0)));
+        pnlBotoes.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Botões", 
+                javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, 
+                javax.swing.border.TitledBorder.DEFAULT_POSITION, 
+                new java.awt.Font("Tahoma", 0, 24), 
+                new java.awt.Color(0, 0, 0)));
+    }
+        
+    @Override
+    public void temaEscuro() {
+        this.getContentPane().setBackground(Color.darkGray);
+        this.getContentPane().setForeground(Color.white);
+        lblNome.setBackground(Color.darkGray);
+        lblDesc.setBackground(Color.darkGray);
+        lblPreco.setBackground(Color.darkGray);
+        lblEstoque.setBackground(Color.darkGray);
+        lblNome.setForeground(Color.white);
+        lblDesc.setForeground(Color.white);
+        lblPreco.setForeground(Color.white);
+        lblEstoque.setForeground(Color.white);
+        txtProNome.setBackground(Color.darkGray);
+        txtProDesc.setBackground(Color.darkGray);
+        txtProPreco.setBackground(Color.darkGray);
+        txtProEstoque.setBackground(Color.darkGray);
+        txtProNome.setForeground(Color.white);
+        txtProDesc.setForeground(Color.white);
+        txtProPreco.setForeground(Color.white);
+        txtProEstoque.setForeground(Color.white);
+        btnSalvar.setBackground(Color.darkGray);
+        btnLimpar.setBackground(Color.darkGray);
+        btnSalvar.setForeground(Color.white);
+        btnLimpar.setForeground(Color.white);
+        pnlCriar.setBackground(Color.darkGray);
+        pnlBotoes.setBackground(Color.darkGray);
+        pnlCriar.setForeground(Color.white);
+        pnlBotoes.setForeground(Color.white);
+        //bordas
+        pnlCriar.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Criar", 
+                javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, 
+                javax.swing.border.TitledBorder.DEFAULT_POSITION, 
+                new java.awt.Font("Tahoma", 0, 24), 
+                new java.awt.Color(255, 255, 255)));
+        pnlBotoes.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Botões", 
+                javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, 
+                javax.swing.border.TitledBorder.DEFAULT_POSITION, 
+                new java.awt.Font("Tahoma", 0, 24), 
+                new java.awt.Color(255, 255, 255)));
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnLimpar;
     private javax.swing.JButton btnSalvar;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
+    private javax.swing.JLabel lblDesc;
+    private javax.swing.JLabel lblEstoque;
+    private javax.swing.JLabel lblNome;
+    private javax.swing.JLabel lblPreco;
+    private javax.swing.JPanel pnlBotoes;
+    private javax.swing.JPanel pnlCriar;
     private javax.swing.JTextField txtProDesc;
     private javax.swing.JTextField txtProEstoque;
     private javax.swing.JTextField txtProNome;

@@ -5,7 +5,6 @@ import janelas.loginbd.*;
 public class Main {
 
     public static void main(String[] args){
-        JFrameConexaoInicial janela = new JFrameConexaoInicial();
-        janela.setVisible(true);
+        new JFrameConexaoInicial(constantes.Consts.TEMA_CLARO).setVisible(true);
     }
 }

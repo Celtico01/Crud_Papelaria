@@ -60,6 +60,11 @@ public final class Consts {
     public static final String MAIOR_COD_PRODUTO = "select max(PRO_CODIGO) from tbProdudo";
     
     /**
+     *Obtem um produto a parti do código. (PREPARED STATEMENT).
+     */
+    public static final String OBTER_PRODUTO = "select PRO_NOME, PRO_DESCRICAO, PRO_PRECO, PRO_QUANTIDADE_ESTOQUE from tbProduto where PRO_CODIGO = ?";    
+    
+    /**
      *Inserir dados na tabela produto (PREPARED STATEMENT).
      */
     public static final String INSERT_TBPRODUTO = "insert into tbProduto (PRO_NOME, PRO_DESCRICAO, PRO_PRECO, PRO_QUANTIDADE_ESTOQUE) values (?,?,?,?)";
@@ -73,6 +78,11 @@ public final class Consts {
      *Atualizar o estoque de produtos (PREPARED STATEMENT).
      */
     public static final String ALTERAR_QTDE_PRODUTO = "update tbProduto set PRO_QUANTIDADE_ESTOQUE = PRO_QUANTIDADE_ESTOQUE - ? where PRO_CODIGO = ?";
+    
+    /**
+     *Atualizar produto. (PREPARED STATEMENT).
+     */
+    public static final String ALTERAR_PRODUTO = "update tbProduto set PRO_NOME = ?, PRO_DESCRICAO = ?, PRO_PRECO = ?, PRO_QUANTIDADE_ESTOQUE = ? where PRO_CODIGO = ?";
     
     /**
      *Obter a quantidade de produtos no estoque (PREPARED STATEMENT).

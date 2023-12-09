@@ -9,8 +9,7 @@ public class Conexao {
     private final String usuario;
     private final String senha;
     private final String url;
-    private final String className;
-        
+    private final String className;     
 
     public Conexao(String usuario, String senha){
         this.url = "jdbc:mysql://localhost:3306/PAPELARIA?useTimezone=true&serverTimezone=UTC";

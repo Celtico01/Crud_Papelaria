@@ -3,6 +3,7 @@ package janelas.principal.exibir;
 import java.sql.Connection;
 import constantes.Consts;
 import interfaces.Temas;
+import java.awt.Color;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import javax.swing.JOptionPane;
@@ -32,15 +33,15 @@ public final class exibirProduto extends javax.swing.JFrame implements Temas{
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel = new javax.swing.JPanel();
-        jScrollPane = new javax.swing.JScrollPane();
+        pnlProduto = new javax.swing.JPanel();
+        scrollpane = new javax.swing.JScrollPane();
         tblProdutos = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Produtos");
         setResizable(false);
 
-        jPanel.setBorder(javax.swing.BorderFactory.createTitledBorder("Produtos"));
+        pnlProduto.setBorder(javax.swing.BorderFactory.createTitledBorder("Produtos"));
 
         tblProdutos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -58,21 +59,21 @@ public final class exibirProduto extends javax.swing.JFrame implements Temas{
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane.setViewportView(tblProdutos);
+        scrollpane.setViewportView(tblProdutos);
 
-        javax.swing.GroupLayout jPanelLayout = new javax.swing.GroupLayout(jPanel);
-        jPanel.setLayout(jPanelLayout);
-        jPanelLayout.setHorizontalGroup(
-            jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanelLayout.createSequentialGroup()
+        javax.swing.GroupLayout pnlProdutoLayout = new javax.swing.GroupLayout(pnlProduto);
+        pnlProduto.setLayout(pnlProdutoLayout);
+        pnlProdutoLayout.setHorizontalGroup(
+            pnlProdutoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlProdutoLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 686, Short.MAX_VALUE)
+                .addComponent(scrollpane, javax.swing.GroupLayout.DEFAULT_SIZE, 686, Short.MAX_VALUE)
                 .addContainerGap())
         );
-        jPanelLayout.setVerticalGroup(
-            jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanelLayout.createSequentialGroup()
-                .addComponent(jScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 317, Short.MAX_VALUE)
+        pnlProdutoLayout.setVerticalGroup(
+            pnlProdutoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlProdutoLayout.createSequentialGroup()
+                .addComponent(scrollpane, javax.swing.GroupLayout.DEFAULT_SIZE, 318, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -82,15 +83,15 @@ public final class exibirProduto extends javax.swing.JFrame implements Temas{
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(pnlProduto, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+                .addComponent(pnlProduto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(28, Short.MAX_VALUE))
         );
 
         pack();
@@ -122,17 +123,43 @@ public final class exibirProduto extends javax.swing.JFrame implements Temas{
     
     @Override
     public void temaClaro() {
-        throw new UnsupportedOperationException("Not supported yet.");
+        this.getContentPane().setBackground(Color.white);
+        this.getContentPane().setForeground(Color.black);
+        pnlProduto.setBackground(Color.white);
+        pnlProduto.setForeground(Color.black);
+        scrollpane.setBackground(Color.white);
+        scrollpane.setForeground(Color.black);
+        tblProdutos.setBackground(Color.white);
+        tblProdutos.setForeground(Color.black);
+        //borda panel
+        pnlProduto.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Produtos", 
+                javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, 
+                javax.swing.border.TitledBorder.DEFAULT_POSITION, 
+                new java.awt.Font("Tahoma", 0, 24), 
+                new java.awt.Color(0, 0, 0)));
     }
         
     @Override
     public void temaEscuro() {
-        throw new UnsupportedOperationException("Not supported yet.");
+        this.getContentPane().setBackground(Color.darkGray);
+        this.getContentPane().setForeground(Color.white);
+        pnlProduto.setBackground(Color.darkGray);
+        pnlProduto.setForeground(Color.white);
+        scrollpane.setBackground(Color.darkGray);
+        scrollpane.setForeground(Color.white);
+        tblProdutos.setBackground(Color.darkGray);
+        tblProdutos.setForeground(Color.white);
+        //borda panel
+        pnlProduto.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Produtos", 
+                javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, 
+                javax.swing.border.TitledBorder.DEFAULT_POSITION, 
+                new java.awt.Font("Tahoma", 0, 24), 
+                new java.awt.Color(255, 255, 255)));
     }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JPanel jPanel;
-    private javax.swing.JScrollPane jScrollPane;
+    private javax.swing.JPanel pnlProduto;
+    private javax.swing.JScrollPane scrollpane;
     private javax.swing.JTable tblProdutos;
     // End of variables declaration//GEN-END:variables
 }

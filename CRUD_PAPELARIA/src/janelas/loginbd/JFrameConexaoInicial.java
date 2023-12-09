@@ -8,20 +8,22 @@ import janelas.principal.JFrameHub;
 import java.awt.Color;
 import javax.swing.JOptionPane;
 
-public class JFrameConexaoInicial extends javax.swing.JFrame implements Temas{
-    public Connection criarConnection(){
-        Conexao conec = criarConexao();
-        return conec.estabelecerConexao();
-    }
-    
-    private Conexao criarConexao(){
-        if(checkBLoginSemSenha.isSelected())
-            return new Conexao(txtFUsuario.getText(), "");
-        return new Conexao(txtFUsuario.getText(), String.valueOf(txtPassword.getPassword()));
-    }
-    
-    public JFrameConexaoInicial() {
+public final class JFrameConexaoInicial extends javax.swing.JFrame implements Temas{
+    private final int tema;
+ 
+    public JFrameConexaoInicial(int tema) {
+        this.tema = tema;
+        
         initComponents();
+        
+        if(this.tema == Consts.TEMA_CLARO){
+            temaClaro();
+            comboBoxTema.setSelectedIndex(Consts.TEMA_CLARO);
+        }
+        else if(this.tema == Consts.TEMA_ESCURO){
+            temaEscuro();
+            comboBoxTema.setSelectedIndex(Consts.TEMA_ESCURO);
+        }
     }
 
     @SuppressWarnings("unchecked")
@@ -49,7 +51,7 @@ public class JFrameConexaoInicial extends javax.swing.JFrame implements Temas{
         setForeground(java.awt.Color.black);
         setResizable(false);
 
-        pnlLogin.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Login", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 24), new java.awt.Color(0, 153, 255))); // NOI18N
+        pnlLogin.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Login", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 24), new java.awt.Color(0, 0, 0))); // NOI18N
 
         jLabel1.setText("Usuário:");
 
@@ -65,11 +67,6 @@ public class JFrameConexaoInicial extends javax.swing.JFrame implements Temas{
         txtPassword.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtPasswordActionPerformed(evt);
-            }
-        });
-        txtPassword.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                txtPasswordKeyPressed(evt);
             }
         });
 
@@ -142,8 +139,8 @@ public class JFrameConexaoInicial extends javax.swing.JFrame implements Temas{
                                 .addComponent(checkBLoginSemSenha)
                                 .addGap(0, 0, Short.MAX_VALUE))
                             .addGroup(pnlLoginLayout.createSequentialGroup()
-                                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jLabel3)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(comboBoxTema, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
                 .addContainerGap())
         );
@@ -165,8 +162,7 @@ public class JFrameConexaoInicial extends javax.swing.JFrame implements Temas{
                 .addGroup(pnlLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnLogin)
                     .addComponent(btnLimpar)
-                    .addComponent(btnAjuda, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap())
+                    .addComponent(btnAjuda, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)))
         );
 
         btnLogin.getAccessibleContext().setAccessibleName("120");
@@ -177,11 +173,17 @@ public class JFrameConexaoInicial extends javax.swing.JFrame implements Temas{
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(pnlLogin, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(pnlLogin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(pnlLogin, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(pnlLogin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -199,12 +201,12 @@ public class JFrameConexaoInicial extends javax.swing.JFrame implements Temas{
     }//GEN-LAST:event_btnLimparActionPerformed
 
     private void btnAjudaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAjudaActionPerformed
-        new JFrameAjuda(-1000000).setVisible(true); //substituir por tema depois!
+        new JFrameAjuda(comboBoxTema.getSelectedIndex()).setVisible(true); //substituir por tema depois!
     }//GEN-LAST:event_btnAjudaActionPerformed
 
     private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
         if(criarConexao().verificarDados() == true){
-            new JFrameHub(criarConnection(), -1000000).setVisible(true); //substituir pelo tema depois!
+            new JFrameHub(criarConnection(), comboBoxTema.getSelectedIndex()).setVisible(true); //substituir pelo tema depois!
             this.dispose();
         }
         else{
@@ -212,10 +214,6 @@ public class JFrameConexaoInicial extends javax.swing.JFrame implements Temas{
             txtPassword.setText("");
         }
     }//GEN-LAST:event_btnLoginActionPerformed
-
-    private void txtPasswordKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPasswordKeyPressed
-        //unused!
-    }//GEN-LAST:event_txtPasswordKeyPressed
 
     private void checkBLoginSemSenhaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_checkBLoginSemSenhaActionPerformed
         if(checkBLoginSemSenha.isSelected()){
@@ -242,36 +240,53 @@ public class JFrameConexaoInicial extends javax.swing.JFrame implements Temas{
         }
     }//GEN-LAST:event_comboBoxTemaActionPerformed
     
-    @Override
+    private Connection criarConnection(){
+        Conexao conec = criarConexao();
+        return conec.estabelecerConexao();
+    }
+    
+    private Conexao criarConexao(){
+        if(checkBLoginSemSenha.isSelected())
+            return new Conexao(txtFUsuario.getText(), "");
+        return new Conexao(txtFUsuario.getText(), String.valueOf(txtPassword.getPassword()));
+    }
+     
+   @Override
     public void temaClaro() {
-        this.setBackground(Color.white);
-        this.setForeground(Color.darkGray);
+        this.getContentPane().setBackground(Color.white);
+        this.getContentPane().setForeground(Color.black);        
         pnlLogin.setBackground(Color.white);
-        pnlLogin.setForeground(Color.darkGray);
-        jLabel1.setForeground(Color.darkGray);
-        jLabel2.setForeground(Color.darkGray);
-        jLabel3.setForeground(Color.darkGray);
+        pnlLogin.setForeground(Color.black);
+        jLabel1.setForeground(Color.black);
+        jLabel2.setForeground(Color.black);
+        jLabel3.setForeground(Color.black);
         txtFUsuario.setBackground(Color.white);
         txtPassword.setBackground(Color.white);
-        txtFUsuario.setForeground(Color.darkGray);
-        txtPassword.setForeground(Color.darkGray);
+        txtFUsuario.setForeground(Color.black);
+        txtPassword.setForeground(Color.black);
         comboBoxTema.setBackground(Color.white);
-        comboBoxTema.setForeground(Color.darkGray);
+        comboBoxTema.setForeground(Color.black);
         checkBLoginSemSenha.setBackground(Color.white);
-        checkBLoginSemSenha.setForeground(Color.darkGray);
+        checkBLoginSemSenha.setForeground(Color.black);
         btnLogin.setBackground(Color.white);
         btnLimpar.setBackground(Color.white);
         btnAjuda.setBackground(Color.white);
-        btnLogin.setForeground(Color.darkGray);
-        btnLimpar.setForeground(Color.darkGray);
-        btnAjuda.setForeground(Color.darkGray);
+        btnLogin.setForeground(Color.black);
+        btnLimpar.setForeground(Color.black);
+        btnAjuda.setForeground(Color.black);
+        pnlLogin.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Login", 
+                javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, 
+                javax.swing.border.TitledBorder.DEFAULT_POSITION, 
+                new java.awt.Font("Tahoma", 0, 24), 
+                new java.awt.Color(0, 0, 0)));
+        comboBoxTema.setFocusable(false);
         
     }
         
     @Override
     public void temaEscuro() {
-        this.setBackground(Color.darkGray);
-        this.setForeground(Color.white);
+        this.getContentPane().setBackground(Color.darkGray);
+        this.getContentPane().setForeground(Color.white);
         pnlLogin.setBackground(Color.darkGray);
         pnlLogin.setForeground(Color.white);
         jLabel1.setForeground(Color.white);
@@ -291,6 +306,12 @@ public class JFrameConexaoInicial extends javax.swing.JFrame implements Temas{
         btnLogin.setForeground(Color.white);
         btnLimpar.setForeground(Color.white);
         btnAjuda.setForeground(Color.white);
+        pnlLogin.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Login", 
+                javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, 
+                javax.swing.border.TitledBorder.DEFAULT_POSITION, 
+                new java.awt.Font("Tahoma", 0, 24), 
+                new java.awt.Color(255, 255, 255)));
+        comboBoxTema.setFocusable(false);
     }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables

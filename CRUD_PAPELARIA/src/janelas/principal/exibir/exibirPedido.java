@@ -3,6 +3,7 @@ package janelas.principal.exibir;
 import java.sql.Connection;
 import constantes.Consts;
 import interfaces.Temas;
+import java.awt.Color;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import javax.swing.JOptionPane;
@@ -32,16 +33,16 @@ public final class exibirPedido extends javax.swing.JFrame implements Temas{
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel = new javax.swing.JPanel();
+        pnlPedido = new javax.swing.JPanel();
         jScrollPane = new javax.swing.JScrollPane();
         tblPedidos = new javax.swing.JTable();
-        jLabel1 = new javax.swing.JLabel();
+        lblLegenda = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Pedidos");
         setResizable(false);
 
-        jPanel.setBorder(javax.swing.BorderFactory.createTitledBorder("Pedidos"));
+        pnlPedido.setBorder(javax.swing.BorderFactory.createTitledBorder("Pedidos"));
 
         tblPedidos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -61,27 +62,27 @@ public final class exibirPedido extends javax.swing.JFrame implements Temas{
         });
         jScrollPane.setViewportView(tblPedidos);
 
-        jLabel1.setText("P.R.:Produtos Removidos!");
+        lblLegenda.setText("P.R.:Produtos Removidos!");
 
-        javax.swing.GroupLayout jPanelLayout = new javax.swing.GroupLayout(jPanel);
-        jPanel.setLayout(jPanelLayout);
-        jPanelLayout.setHorizontalGroup(
-            jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanelLayout.createSequentialGroup()
+        javax.swing.GroupLayout pnlPedidoLayout = new javax.swing.GroupLayout(pnlPedido);
+        pnlPedido.setLayout(pnlPedidoLayout);
+        pnlPedidoLayout.setHorizontalGroup(
+            pnlPedidoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlPedidoLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(pnlPedidoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 686, Short.MAX_VALUE)
-                    .addGroup(jPanelLayout.createSequentialGroup()
-                        .addComponent(jLabel1)
+                    .addGroup(pnlPedidoLayout.createSequentialGroup()
+                        .addComponent(lblLegenda)
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
-        jPanelLayout.setVerticalGroup(
-            jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanelLayout.createSequentialGroup()
+        pnlPedidoLayout.setVerticalGroup(
+            pnlPedidoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlPedidoLayout.createSequentialGroup()
                 .addComponent(jScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 293, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel1)
+                .addComponent(lblLegenda)
                 .addGap(0, 12, Short.MAX_VALUE))
         );
 
@@ -91,14 +92,14 @@ public final class exibirPedido extends javax.swing.JFrame implements Temas{
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(pnlPedido, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(pnlPedido, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -143,18 +144,46 @@ public final class exibirPedido extends javax.swing.JFrame implements Temas{
     
     @Override
     public void temaClaro() {
-        throw new UnsupportedOperationException("Not supported yet.");
+        this.getContentPane().setBackground(Color.white);
+        this.getContentPane().setForeground(Color.black);
+        lblLegenda.setBackground(Color.white);
+        lblLegenda.setForeground(Color.black);
+        pnlPedido.setBackground(Color.white);
+        pnlPedido.setForeground(Color.black);
+        jScrollPane.setBackground(Color.white);
+        jScrollPane.setForeground(Color.black);
+        tblPedidos.setBackground(Color.white);
+        tblPedidos.setForeground(Color.black);
+        pnlPedido.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Pedidos", 
+                javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, 
+                javax.swing.border.TitledBorder.DEFAULT_POSITION, 
+                new java.awt.Font("Tahoma", 0, 24), 
+                new java.awt.Color(0, 0, 0)));
     }
         
     @Override
     public void temaEscuro() {
-        throw new UnsupportedOperationException("Not supported yet.");
+        this.getContentPane().setBackground(Color.darkGray);
+        this.getContentPane().setForeground(Color.white);
+        lblLegenda.setBackground(Color.darkGray);
+        lblLegenda.setForeground(Color.white);
+        pnlPedido.setBackground(Color.darkGray);
+        pnlPedido.setForeground(Color.white);
+        jScrollPane.setBackground(Color.darkGray);
+        jScrollPane.setForeground(Color.white);
+        tblPedidos.setBackground(Color.darkGray);
+        tblPedidos.setForeground(Color.white);
+        pnlPedido.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Pedidos", 
+                javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, 
+                javax.swing.border.TitledBorder.DEFAULT_POSITION, 
+                new java.awt.Font("Tahoma", 0, 24), 
+                new java.awt.Color(255, 255, 255)));
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JPanel jPanel;
     private javax.swing.JScrollPane jScrollPane;
+    private javax.swing.JLabel lblLegenda;
+    private javax.swing.JPanel pnlPedido;
     private javax.swing.JTable tblPedidos;
     // End of variables declaration//GEN-END:variables
 }

@@ -2,6 +2,7 @@ package janelas.loginbd;
 
 import constantes.Consts;
 import interfaces.Temas;
+import java.awt.Color;
 
 public final class JFrameAjuda extends javax.swing.JFrame implements Temas{
     private final int tema;
@@ -82,7 +83,7 @@ public final class JFrameAjuda extends javax.swing.JFrame implements Temas{
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
-                .addComponent(lblSenhaLess, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(lblSenhaLess, javax.swing.GroupLayout.DEFAULT_SIZE, 381, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel4Layout.setVerticalGroup(
@@ -103,10 +104,10 @@ public final class JFrameAjuda extends javax.swing.JFrame implements Temas{
                     .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(168, Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(168, 168, 168)
                 .addComponent(btnVoltar)
-                .addGap(168, 168, 168))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -116,8 +117,9 @@ public final class JFrameAjuda extends javax.swing.JFrame implements Temas{
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, Short.MAX_VALUE)
-                .addComponent(btnVoltar, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 43, Short.MAX_VALUE)
+                .addComponent(btnVoltar, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -133,7 +135,8 @@ public final class JFrameAjuda extends javax.swing.JFrame implements Temas{
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         pack();
@@ -148,12 +151,86 @@ public final class JFrameAjuda extends javax.swing.JFrame implements Temas{
 
     @Override
     public void temaClaro() {
-        throw new UnsupportedOperationException("Not supported yet.");
+        this.getContentPane().setBackground(Color.white);
+        this.getContentPane().setForeground(Color.black);
+        jPanel1.setBackground(Color.white);
+        jPanel1.setForeground(Color.black);
+        jPanel2.setBackground(Color.white);
+        jPanel2.setForeground(Color.black);
+        jPanel3.setBackground(Color.white);
+        jPanel3.setForeground(Color.black);
+        jPanel4.setBackground(Color.white);
+        jPanel4.setForeground(Color.black);
+        btnVoltar.setBackground(Color.white);
+        btnVoltar.setForeground(Color.black);
+        lblSenha.setBackground(Color.white);
+        lblSenha.setForeground(Color.black);
+        lblSenhaLess.setBackground(Color.white);
+        lblSenhaLess.setForeground(Color.black);
+        lblUsuario.setBackground(Color.white);
+        lblUsuario.setForeground(Color.black);
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Ajuda", 
+                javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, 
+                javax.swing.border.TitledBorder.DEFAULT_POSITION, 
+                new java.awt.Font("Tahoma", 0, 24), 
+                new java.awt.Color(0, 0, 0)));
+        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Usuário", 
+                javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, 
+                javax.swing.border.TitledBorder.DEFAULT_POSITION, 
+                new java.awt.Font("Tahoma", 0, 24), 
+                new java.awt.Color(0, 0, 0)));
+        jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Senha", 
+                javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, 
+                javax.swing.border.TitledBorder.DEFAULT_POSITION, 
+                new java.awt.Font("Tahoma", 0, 24), 
+                new java.awt.Color(0, 0, 0)));
+        jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Usuário Sem Senha", 
+                javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, 
+                javax.swing.border.TitledBorder.DEFAULT_POSITION, 
+                new java.awt.Font("Tahoma", 0, 24), 
+                new java.awt.Color(0, 0, 0)));
     }
         
     @Override
     public void temaEscuro() {
-        throw new UnsupportedOperationException("Not supported yet.");
+        this.getContentPane().setBackground(Color.darkGray);
+        this.getContentPane().setForeground(Color.white);
+        jPanel1.setBackground(Color.darkGray);
+        jPanel1.setForeground(Color.white);
+        jPanel2.setBackground(Color.darkGray);
+        jPanel2.setForeground(Color.white);
+        jPanel3.setBackground(Color.darkGray);
+        jPanel3.setForeground(Color.white);
+        jPanel4.setBackground(Color.darkGray);
+        jPanel4.setForeground(Color.white);
+        btnVoltar.setBackground(Color.darkGray);
+        btnVoltar.setForeground(Color.white);
+        lblSenha.setBackground(Color.darkGray);
+        lblSenha.setForeground(Color.white);
+        lblSenhaLess.setBackground(Color.darkGray);
+        lblSenhaLess.setForeground(Color.white);
+        lblUsuario.setBackground(Color.darkGray);
+        lblUsuario.setForeground(Color.white);
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Ajuda", 
+                javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, 
+                javax.swing.border.TitledBorder.DEFAULT_POSITION, 
+                new java.awt.Font("Tahoma", 0, 24), 
+                new java.awt.Color(255, 255, 255)));
+        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Usuário", 
+                javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, 
+                javax.swing.border.TitledBorder.DEFAULT_POSITION, 
+                new java.awt.Font("Tahoma", 0, 24), 
+                new java.awt.Color(255, 255, 255)));
+        jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Senha", 
+                javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, 
+                javax.swing.border.TitledBorder.DEFAULT_POSITION, 
+                new java.awt.Font("Tahoma", 0, 24), 
+                new java.awt.Color(255, 255, 255)));
+        jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Usuário Sem Senha", 
+                javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, 
+                javax.swing.border.TitledBorder.DEFAULT_POSITION, 
+                new java.awt.Font("Tahoma", 0, 24), 
+                new java.awt.Color(255, 255, 255)));
     }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables

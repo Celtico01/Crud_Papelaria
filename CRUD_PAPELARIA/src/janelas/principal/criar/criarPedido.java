@@ -2,6 +2,9 @@ package janelas.principal.criar;
 
 import constantes.Consts;
 import interfaces.Temas;
+import java.awt.Color;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -46,6 +49,17 @@ public final class criarPedido extends javax.swing.JFrame implements Temas{
             temaEscuro();
         }
         
+        addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent e){
+                DefaultTableModel tbl = (DefaultTableModel) tblLista.getModel();
+                
+                cmbBox.removeAllItems();
+                tbl.setRowCount(0);
+                
+            }
+        });
+        
         
         //evento para selecionar item na tabela
         tblLista.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
@@ -67,20 +81,20 @@ public final class criarPedido extends javax.swing.JFrame implements Temas{
         btnAdicionar = new javax.swing.JButton();
         txtProQuantidade = new javax.swing.JTextField();
         txtProCod = new javax.swing.JTextField();
-        jLabel8 = new javax.swing.JLabel();
-        jLabel9 = new javax.swing.JLabel();
-        jPanel1 = new javax.swing.JPanel();
-        jScrollPane1 = new javax.swing.JScrollPane();
+        lblCodPro = new javax.swing.JLabel();
+        lblQtde = new javax.swing.JLabel();
+        pnlLista = new javax.swing.JPanel();
+        scrollPane = new javax.swing.JScrollPane();
         tblLista = new javax.swing.JTable();
         btnApagar = new javax.swing.JButton();
         cmbBox = new javax.swing.JComboBox<>();
-        jLabel3 = new javax.swing.JLabel();
-        jPanel2 = new javax.swing.JPanel();
+        lblRemover = new javax.swing.JLabel();
+        pnlFinPed = new javax.swing.JPanel();
         btnLimparFINPED = new javax.swing.JButton();
         btnFinalizar = new javax.swing.JButton();
         txtCliNome = new javax.swing.JTextField();
-        jLabel5 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
+        lblDataPed = new javax.swing.JLabel();
+        lblNomeCli = new javax.swing.JLabel();
         txtDataPed = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -105,9 +119,9 @@ public final class criarPedido extends javax.swing.JFrame implements Temas{
             }
         });
 
-        jLabel8.setText("Código do produto:");
+        lblCodPro.setText("Código do produto:");
 
-        jLabel9.setText("Quantidade:");
+        lblQtde.setText("Quantidade:");
 
         javax.swing.GroupLayout pnlProdutoLayout = new javax.swing.GroupLayout(pnlProduto);
         pnlProduto.setLayout(pnlProdutoLayout);
@@ -117,11 +131,11 @@ public final class criarPedido extends javax.swing.JFrame implements Temas{
                 .addContainerGap()
                 .addGroup(pnlProdutoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(pnlProdutoLayout.createSequentialGroup()
-                        .addComponent(jLabel8)
+                        .addComponent(lblCodPro)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(txtProCod))
                     .addGroup(pnlProdutoLayout.createSequentialGroup()
-                        .addComponent(jLabel9)
+                        .addComponent(lblQtde)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(txtProQuantidade, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(18, 18, 18)
@@ -137,11 +151,11 @@ public final class criarPedido extends javax.swing.JFrame implements Temas{
                 .addGroup(pnlProdutoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlProdutoLayout.createSequentialGroup()
                         .addGroup(pnlProdutoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel8)
+                            .addComponent(lblCodPro)
                             .addComponent(txtProCod, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(pnlProdutoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel9)
+                            .addComponent(lblQtde)
                             .addComponent(txtProQuantidade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlProdutoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(btnLimparPRO, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -149,7 +163,7 @@ public final class criarPedido extends javax.swing.JFrame implements Temas{
                 .addContainerGap())
         );
 
-        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Lista"));
+        pnlLista.setBorder(javax.swing.BorderFactory.createTitledBorder("Lista"));
 
         tblLista.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -159,7 +173,7 @@ public final class criarPedido extends javax.swing.JFrame implements Temas{
                 "Código", "Quantidade", "Preço Unitário", "SubTotal"
             }
         ));
-        jScrollPane1.setViewportView(tblLista);
+        scrollPane.setViewportView(tblLista);
 
         btnApagar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/hub/apagar_icon.png"))); // NOI18N
         btnApagar.setText("Apagar");
@@ -169,26 +183,27 @@ public final class criarPedido extends javax.swing.JFrame implements Temas{
             }
         });
 
+        cmbBox.setFocusable(false);
         cmbBox.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 cmbBoxItemStateChanged(evt);
             }
         });
 
-        jLabel3.setText("Deseja remover qual produto?");
+        lblRemover.setText("Deseja remover qual produto?");
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
+        javax.swing.GroupLayout pnlListaLayout = new javax.swing.GroupLayout(pnlLista);
+        pnlLista.setLayout(pnlListaLayout);
+        pnlListaLayout.setHorizontalGroup(
+            pnlListaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlListaLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGroup(pnlListaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(pnlListaLayout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 503, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel3)
+                        .addComponent(scrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 503, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(pnlListaLayout.createSequentialGroup()
+                        .addComponent(lblRemover)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(cmbBox, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
@@ -196,20 +211,20 @@ public final class criarPedido extends javax.swing.JFrame implements Temas{
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
+        pnlListaLayout.setVerticalGroup(
+            pnlListaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlListaLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(scrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(pnlListaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblRemover, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(cmbBox, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnApagar))
                 .addGap(54, 54, 54))
         );
 
-        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Finalizar Pedido"));
+        pnlFinPed.setBorder(javax.swing.BorderFactory.createTitledBorder("Finalizar Pedido"));
 
         btnLimparFINPED.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/login/limpar_icon.png"))); // NOI18N
         btnLimparFINPED.setText("Limpar");
@@ -227,25 +242,25 @@ public final class criarPedido extends javax.swing.JFrame implements Temas{
             }
         });
 
-        jLabel5.setText("Data do Pedido:");
+        lblDataPed.setText("Data do Pedido:");
 
-        jLabel4.setText("Nome do Cliente:");
+        lblNomeCli.setText("Nome do Cliente:");
 
         txtDataPed.setEditable(false);
 
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
+        javax.swing.GroupLayout pnlFinPedLayout = new javax.swing.GroupLayout(pnlFinPed);
+        pnlFinPed.setLayout(pnlFinPedLayout);
+        pnlFinPedLayout.setHorizontalGroup(
+            pnlFinPedLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlFinPedLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jLabel4)
+                .addGroup(pnlFinPedLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(pnlFinPedLayout.createSequentialGroup()
+                        .addComponent(lblNomeCli)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(txtCliNome, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jLabel5)
+                    .addGroup(pnlFinPedLayout.createSequentialGroup()
+                        .addComponent(lblDataPed)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(txtDataPed)))
                 .addGap(18, 18, 18)
@@ -254,22 +269,22 @@ public final class criarPedido extends javax.swing.JFrame implements Temas{
                 .addComponent(btnLimparFINPED, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel4)
+        pnlFinPedLayout.setVerticalGroup(
+            pnlFinPedLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlFinPedLayout.createSequentialGroup()
+                .addContainerGap(19, Short.MAX_VALUE)
+                .addGroup(pnlFinPedLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlFinPedLayout.createSequentialGroup()
+                        .addGroup(pnlFinPedLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(lblNomeCli)
                             .addComponent(txtCliNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel5)
+                        .addGroup(pnlFinPedLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(lblDataPed)
                             .addComponent(txtDataPed, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(6, 6, 6))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlFinPedLayout.createSequentialGroup()
+                        .addGroup(pnlFinPedLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(btnFinalizar)
                             .addComponent(btnLimparFINPED, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addContainerGap())))
@@ -282,21 +297,21 @@ public final class criarPedido extends javax.swing.JFrame implements Temas{
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(pnlFinPed, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(pnlProduto, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(pnlLista, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap()
                 .addComponent(pnlProduto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(pnlLista, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addComponent(pnlFinPed, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(36, Short.MAX_VALUE))
         );
 
         pack();
@@ -354,7 +369,6 @@ public final class criarPedido extends javax.swing.JFrame implements Temas{
             codigos.add(Integer.valueOf(txtProCod.getText()));
             qtde.add(Integer.valueOf(txtProQuantidade.getText()));
             precos.add(preco);
-            System.out.println(precos.toString());
             //cria o item no comboBox e adiciona a linha na tabela!
             cmbBox.addItem(txtProCod.getText());
             tabelaProd.addRow(linha);
@@ -427,16 +441,6 @@ public final class criarPedido extends javax.swing.JFrame implements Temas{
         }
     }//GEN-LAST:event_btnFinalizarActionPerformed
 
-    @Override
-    public void temaClaro() {
-        throw new UnsupportedOperationException("Not supported yet.");
-    }
-        
-    @Override
-    public void temaEscuro() {
-        throw new UnsupportedOperationException("Not supported yet.");
-    }
-    
     private void limparPRO(){
         txtProCod.setText("");
         txtProQuantidade.setText("");
@@ -446,22 +450,22 @@ public final class criarPedido extends javax.swing.JFrame implements Temas{
         txtCliNome.setText("");
     }
     
-    private static boolean isInteger(String str){
-        try{
-            Integer.parseInt(str);
-            return true;
-        }
-        catch(NumberFormatException nfe){
-            return false;
-        }
-    }
-    
     private static boolean isDouble(String str){
         try {
-            Double.parseDouble(str); 
+            Double.valueOf(str); 
             return true;
         } 
         catch (NumberFormatException nfe) {
+            return false;
+        }
+    }
+
+    private static boolean isInteger(String str){
+        try{
+            Integer.valueOf(str);
+            return true;
+        }
+        catch(NumberFormatException nfe){
             return false;
         }
     }
@@ -574,6 +578,130 @@ public final class criarPedido extends javax.swing.JFrame implements Temas{
             JOptionPane.showMessageDialog(null, "Erro: " + sqlE.getMessage(), "ERRO", JOptionPane.ERROR_MESSAGE);                        
         }
     }
+    
+    @Override
+    public void temaClaro() {
+        this.getContentPane().setBackground(Color.white);
+        this.getContentPane().setForeground(Color.black);
+        lblCodPro.setBackground(Color.white);
+        lblQtde.setBackground(Color.white);
+        lblRemover.setBackground(Color.white);
+        lblNomeCli.setBackground(Color.white);
+        lblDataPed.setBackground(Color.white);
+        lblCodPro.setForeground(Color.black);
+        lblQtde.setForeground(Color.black);
+        lblRemover.setForeground(Color.black);
+        lblNomeCli.setForeground(Color.black);
+        lblDataPed.setForeground(Color.black);
+        txtCliNome.setBackground(Color.white);
+        txtDataPed.setBackground(Color.white);
+        txtProCod.setBackground(Color.white);
+        txtProQuantidade.setBackground(Color.white);
+        txtCliNome.setForeground(Color.black);
+        txtDataPed.setForeground(Color.black);
+        txtProCod.setForeground(Color.black);
+        txtProQuantidade.setForeground(Color.black);
+        btnAdicionar.setBackground(Color.white);
+        btnApagar.setBackground(Color.white);
+        btnFinalizar.setBackground(Color.white);
+        btnLimparFINPED.setBackground(Color.white);
+        btnLimparPRO.setBackground(Color.white);
+        btnAdicionar.setForeground(Color.black);
+        btnApagar.setForeground(Color.black);
+        btnFinalizar.setForeground(Color.black);
+        btnLimparFINPED.setForeground(Color.black);
+        btnLimparPRO.setForeground(Color.black);
+        tblLista.setBackground(Color.white);
+        tblLista.setForeground(Color.black);
+        scrollPane.setBackground(Color.white);
+        scrollPane.setForeground(Color.black);
+        cmbBox.setBackground(Color.white);
+        cmbBox.setForeground(Color.black);
+        pnlProduto.setBackground(Color.white);
+        pnlLista.setBackground(Color.white);
+        pnlFinPed.setBackground(Color.white);
+        pnlProduto.setForeground(Color.black);
+        pnlLista.setForeground(Color.black);
+        pnlFinPed.setForeground(Color.black);
+        //bordas
+        pnlProduto.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Produto", 
+                javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, 
+                javax.swing.border.TitledBorder.DEFAULT_POSITION, 
+                new java.awt.Font("Tahoma", 0, 24), 
+                new java.awt.Color(0, 0, 0)));
+        pnlLista.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Lista", 
+                javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, 
+                javax.swing.border.TitledBorder.DEFAULT_POSITION, 
+                new java.awt.Font("Tahoma", 0, 24), 
+                new java.awt.Color(0, 0, 0)));
+        pnlFinPed.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Finalizar Pedido", 
+                javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, 
+                javax.swing.border.TitledBorder.DEFAULT_POSITION, 
+                new java.awt.Font("Tahoma", 0, 24), 
+                new java.awt.Color(0, 0, 0)));
+    }
+        
+    @Override
+    public void temaEscuro() {
+        this.getContentPane().setBackground(Color.darkGray);
+        this.getContentPane().setForeground(Color.white);
+        lblCodPro.setBackground(Color.darkGray);
+        lblQtde.setBackground(Color.darkGray);
+        lblRemover.setBackground(Color.darkGray);
+        lblNomeCli.setBackground(Color.darkGray);
+        lblDataPed.setBackground(Color.darkGray);
+        lblCodPro.setForeground(Color.white);
+        lblQtde.setForeground(Color.white);
+        lblRemover.setForeground(Color.white);
+        lblNomeCli.setForeground(Color.white);
+        lblDataPed.setForeground(Color.white);
+        txtCliNome.setBackground(Color.darkGray);
+        txtDataPed.setBackground(Color.darkGray);
+        txtProCod.setBackground(Color.darkGray);
+        txtProQuantidade.setBackground(Color.darkGray);
+        txtCliNome.setForeground(Color.white);
+        txtDataPed.setForeground(Color.white);
+        txtProCod.setForeground(Color.white);
+        txtProQuantidade.setForeground(Color.white);
+        btnAdicionar.setBackground(Color.darkGray);
+        btnApagar.setBackground(Color.darkGray);
+        btnFinalizar.setBackground(Color.darkGray);
+        btnLimparFINPED.setBackground(Color.darkGray);
+        btnLimparPRO.setBackground(Color.darkGray);
+        btnAdicionar.setForeground(Color.white);
+        btnApagar.setForeground(Color.white);
+        btnFinalizar.setForeground(Color.white);
+        btnLimparFINPED.setForeground(Color.white);
+        btnLimparPRO.setForeground(Color.white);
+        tblLista.setBackground(Color.darkGray);
+        tblLista.setForeground(Color.white);
+        scrollPane.setBackground(Color.darkGray);
+        scrollPane.setForeground(Color.white);
+        cmbBox.setBackground(Color.darkGray);
+        cmbBox.setForeground(Color.white);
+        pnlProduto.setBackground(Color.darkGray);
+        pnlLista.setBackground(Color.darkGray);
+        pnlFinPed.setBackground(Color.darkGray);
+        pnlProduto.setForeground(Color.white);
+        pnlLista.setForeground(Color.white);
+        pnlFinPed.setForeground(Color.white);
+        //bordas
+        pnlProduto.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Produto", 
+                javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, 
+                javax.swing.border.TitledBorder.DEFAULT_POSITION, 
+                new java.awt.Font("Tahoma", 0, 24), 
+                new java.awt.Color(255, 255, 255)));
+        pnlLista.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Lista", 
+                javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, 
+                javax.swing.border.TitledBorder.DEFAULT_POSITION, 
+                new java.awt.Font("Tahoma", 0, 24), 
+                new java.awt.Color(255, 255, 255)));
+        pnlFinPed.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Finalizar Pedido", 
+                javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, 
+                javax.swing.border.TitledBorder.DEFAULT_POSITION, 
+                new java.awt.Font("Tahoma", 0, 24), 
+                new java.awt.Color(255, 255, 255)));
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAdicionar;
@@ -582,15 +710,15 @@ public final class criarPedido extends javax.swing.JFrame implements Temas{
     private javax.swing.JButton btnLimparFINPED;
     private javax.swing.JButton btnLimparPRO;
     private javax.swing.JComboBox<String> cmbBox;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
-    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel lblCodPro;
+    private javax.swing.JLabel lblDataPed;
+    private javax.swing.JLabel lblNomeCli;
+    private javax.swing.JLabel lblQtde;
+    private javax.swing.JLabel lblRemover;
+    private javax.swing.JPanel pnlFinPed;
+    private javax.swing.JPanel pnlLista;
     private javax.swing.JPanel pnlProduto;
+    private javax.swing.JScrollPane scrollPane;
     private javax.swing.JTable tblLista;
     private javax.swing.JTextField txtCliNome;
     private javax.swing.JTextField txtDataPed;
