@@ -56,11 +56,9 @@ public final class criarPedido extends javax.swing.JFrame implements Temas{
                 
                 cmbBox.removeAllItems();
                 tbl.setRowCount(0);
-                
             }
         });
-        
-        
+
         //evento para selecionar item na tabela
         tblLista.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
             @Override
@@ -70,7 +68,6 @@ public final class criarPedido extends javax.swing.JFrame implements Temas{
             }
         });
     }
-
     
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -324,8 +321,8 @@ public final class criarPedido extends javax.swing.JFrame implements Temas{
     
     private void btnAdicionarbtnAdicionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdicionarbtnAdicionarActionPerformed
         try{
-            if(txtProCod.getText().isEmpty()|| //java 11
-                txtProQuantidade.getText().isEmpty()){ //java 11
+            if(txtProCod.getText().isBlank()|| //java 11
+                txtProQuantidade.getText().isBlank()){ //java 11
                 throw new IllegalArgumentException("Preencha todos os campos!");
             }
             if(!isInteger(txtProCod.getText())){
